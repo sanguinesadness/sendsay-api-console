@@ -1,0 +1,94 @@
+@import "../../../../styles/style.scss";
+
+.button {
+  $default-gradient: linear-gradient(180deg, $light-blue 0%, $blue 100%);
+  --color: #fff;
+
+  padding: 10px 25px;
+  border-radius: 7px;
+  background: $default-gradient;
+  color: var(--color);
+  cursor: pointer;
+  transition: 200ms ease all;
+  font-weight: 500;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  @include no-selection();
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba($color: #45a5ff, $alpha: 0.5);
+  }
+
+  &:hover {
+    background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.15)
+      ),
+      $default-gradient, #c4c4c4;
+  }
+
+  &:active {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),
+      $default-gradient, #c4c4c4;
+  }
+
+  &--nobg {
+    $transition: 200ms ease all;
+
+    background: transparent !important;
+    border-radius: 7px;
+    padding: 5px 7px;
+    transition: $transition;
+    --color: #000;
+
+    .button__icon {
+      transition: $transition;
+
+      & * {
+        transition: $transition;
+      }
+    }
+
+    &:hover {
+      --color: #{$blue};
+    }
+
+    &:focus {
+      --color: #{$blue};
+    }
+  }
+
+  &--disabled {
+    background: linear-gradient(0deg, #c4c4c4, #c4c4c4), $default-gradient;
+    border-color: var(--color);
+  }
+
+  &--loading {
+    .button__text,
+    .button__icon {
+      visibility: hidden;
+    }
+  }
+
+  &__icon {
+    fill: var(--color);
+    stroke: var(--color);
+    height: 1.4em;
+    width: 1.4em;
+
+    & * {
+      fill: var(--color);
+      stroke: var(--color);
+    }
+  }
+
+  &__loading_spinner {
+    position: absolute;
+    animation: rotating 3s linear infinite;
+    height: 1.4em;
+    width: 1.4em;
+  }
+}
