@@ -20,7 +20,7 @@
     "rules": {
         "array-bracket-spacing": ["error", "never"],
         "block-spacing": ["error", "always"],
-        "brace-style": ["error", "stroustrup"],
+        "brace-style": ["error", "1tbs"],
         "no-useless-escale": "off",
         "indent": "off",
         "quotes": ["error", "double", { "avoidEscape": true }],

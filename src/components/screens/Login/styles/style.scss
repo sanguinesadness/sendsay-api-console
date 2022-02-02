@@ -1,0 +1,47 @@
+@import "../../../../styles/style.scss";
+
+.login-screen {
+  width: 100%;
+  height: 100%;
+
+  &__content,
+  .content {
+    width: 100%;
+    height: 100%;
+    @include flex-centered(column);
+
+    &__header,
+    .header {
+      &__logo {
+      }
+    }
+
+    &__form,
+    .form {
+      margin: 20px 0;
+      width: 35vw;
+      @include shadow-block();
+
+      &__title,
+      .title {
+        margin-bottom: 20px;
+      }
+
+      &__fields,
+      .fields {
+        &__field {
+          margin-bottom: 15px;
+        }
+      }
+
+      &__buttons,
+      .buttons {
+        margin-top: 20px;
+      }
+
+      .error-label {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

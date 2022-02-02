@@ -1,30 +1,35 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Button from "./components/ui/Button";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import Console from "./components/screens/Console";
+import Login from "./components/screens/Login";
+import { useTypedSelector } from "./hooks/useTypedSelector";
+import { checkAuth } from "./store/actions/auth";
 import "./styles/style.css";
-import { ReactComponent as AlignIcon } from "./assets/icons/align.svg";
-import Input from "./components/ui/Input";
-import { useState } from "react";
 
 function App() {
-  const [value, setValue] = useState<string>("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const authState = useTypedSelector((root) => root.auth);
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, []);
+
+  useEffect(() => {
+    if (authState.loading || authState.loggedIn === undefined) return;
+
+    if (authState.loggedIn) navigate("/console");
+    else navigate("/login");
+  }, [authState.loggedIn]);
 
   return (
-    <BrowserRouter>
-      <div id="app" style={{ margin: "20px" }}>
-        <Input
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          label="Логин"
-          extraLabel="Опционально"
-        />
-        <br />
-        <Button text="Форматировать" icon={AlignIcon} type="no-bg" />
-        <Routes>
-          <Route path="/login" />
-          <Route path="/console" />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <div id="app">
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/console" element={<Console />} />
+      </Routes>
+    </div>
   );
 }
 
