@@ -1,0 +1,19 @@
+@import "../../../../styles/style.scss";
+
+.textarea {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    margin-bottom: 5px;
+    color: $gray;
+    font-size: 0.9em;
+  }
+
+  &__inner {
+    border: 1px solid rgba(#000, 0.2);
+    border-radius: 5px;
+    resize: none;
+    padding: 10px;
+  }
+}

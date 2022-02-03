@@ -12,15 +12,15 @@ const TrackItem: FC<TrackItemProps> = ({ action, success }) => {
   return (
     <div
       className={classNames(
-        "history-track__item item",
-        { "history-track__item--error": !success },
+        "actions__action action",
+        { "actions__action--error": !success },
         {
-          "history-track__item--success": success,
+          "actions__action--success": success,
         },
       )}>
-      <span className="item__status" />
-      <span className="item__action">{action}</span>
-      <div className="item__dropdown dropdown">
+      <span className="action__status" />
+      <span className="action__action-name">{action}</span>
+      <div className="action__dropdown dropdown">
         <DragIcon className="dropdown__icon" />
       </div>
     </div>

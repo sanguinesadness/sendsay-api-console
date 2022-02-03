@@ -226,6 +226,7 @@ h4 {
 .console-screen {
   --screen-padding: 10px 15px;
   height: 100vh;
+  overflow: hidden;
 }
 
 .console-screen__header,
@@ -244,7 +245,7 @@ h4 {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  padding: var(--screen-padding);
+  padding: 10px 0 10px 15px;
 }
 
 .console-screen__header__top__screen-info,
@@ -358,8 +359,8 @@ h4 {
 .console-screen__header .top__maximize-button,
 .console-screen .header__top__maximize-button,
 .console-screen .header .top__maximize-button {
-  margin-left: 10px;
-  padding-right: 0;
+  margin-left: 5px;
+  padding: 5px 15px;
 }
 
 .console-screen__header__bottom,
@@ -372,10 +373,15 @@ h4 {
   padding-left: 15px;
 }
 
-.console-screen__header__bottom__close-button,
-.console-screen__header .bottom__close-button,
-.console-screen .header__bottom__close-button,
-.console-screen .header .bottom__close-button {
+.console-screen__header__bottom__history-track__clear-button,
+.console-screen__header__bottom .history-track__clear-button,
+.console-screen__header .bottom__history-track__clear-button,
+.console-screen__header .bottom .history-track__clear-button,
+.console-screen .header__bottom__history-track__clear-button,
+.console-screen .header__bottom .history-track__clear-button,
+.console-screen .header .bottom__history-track__clear-button,
+.console-screen .header .bottom .history-track__clear-button {
+  height: 100%;
   padding: 5px 15px;
   margin-left: 15px;
   border-radius: 0;
@@ -390,6 +396,43 @@ h4 {
 .console-screen__body,
 .console-screen .body {
   background: #fff;
+  padding: 10px 15px;
+  height: 100vh;
+  gap: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: "row";
+          flex-direction: "row";
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.console-screen__body__drag,
+.console-screen .body__drag {
+  width: 15px;
+  cursor: ew-resize;
+}
+
+.console-screen__body__textarea,
+.console-screen__body .textarea,
+.console-screen .body__textarea,
+.console-screen .body .textarea {
+  width: 100%;
+  height: 100%;
+}
+
+.console-screen__body__textarea__inner,
+.console-screen__body .textarea__inner,
+.console-screen .body__textarea__inner,
+.console-screen .body .textarea__inner {
+  width: 100%;
   height: 100%;
 }
 /*# sourceMappingURL=style.css.map */

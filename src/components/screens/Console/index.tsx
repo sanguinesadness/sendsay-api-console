@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { logout } from "../../../store/actions/auth";
 import Button from "../../ui/Button";
-import Body from "./components/HistoryTrack/Body";
+import Body from "./Body";
 import Header from "./Header";
-import "./styles/style.css"
+import "./styles/style.css";
 
 const Console = () => {
   const dispatch = useDispatch();
@@ -31,8 +31,8 @@ const Console = () => {
 
   return (
     <div className="console-screen">
-      <Header/>
-      <Body/>
+      <Header />
+      <Body />
       <div className="console-screen__footer">
 
       </div>

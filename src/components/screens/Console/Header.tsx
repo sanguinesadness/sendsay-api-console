@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { ReactComponent as LogoIcon } from "../../../assets/icons/logo.svg";
 import { ReactComponent as LogoutIcon } from "../../../assets/icons/logout.svg";
 import { ReactComponent as MaximizeIcon } from "../../../assets/icons/maximize.svg";
-import { ReactComponent as CloseIcon } from "../../../assets/icons/close.svg";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import Button from "../../ui/Button";
 import "./styles/style.css";
@@ -45,7 +44,6 @@ const Header = () => {
       </div>
       <div className="header__bottom bottom">
         <HistoryTrack className="bottom__history-track"/>
-        <Button className="bottom__close-button" icon={CloseIcon} type="no-bg"/>
       </div>
     </div>
   );
