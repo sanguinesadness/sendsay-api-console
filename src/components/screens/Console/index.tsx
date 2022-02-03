@@ -10,9 +10,9 @@ const Console = () => {
   const navigate = useNavigate();
   const authState = useTypedSelector((root) => root.auth);
 
-  const goToLogin = () => navigate("/login");
+  const redirectToLogin = () => navigate("/login");
 
-  const doLogout = async () => {
+  const handleLogout = async () => {
     dispatch(logout());
     navigate("/login");
   };
@@ -21,7 +21,7 @@ const Console = () => {
     return (
       <div>
         <span>Не авторизован</span>
-        <Button text="Войти" type="default" onClick={goToLogin} />
+        <Button text="Войти" type="default" onClick={redirectToLogin} />
       </div>
     );
   }
@@ -31,7 +31,7 @@ const Console = () => {
       <div>{authState.data?.login}</div>
       <div>{authState.data?.sublogin}</div>
       <div>{authState.data?.password}</div>
-      <Button text="Выйти" onClick={doLogout} />
+      <Button text="Выйти" onClick={handleLogout} />
     </div>
   );
 };

@@ -13,8 +13,12 @@
     }
 
     .input__inner {
-      border-color: $red !important;
-      box-shadow: 0 0 5px rgba($red, 0.1) !important;
+      border-color: $red;
+      box-shadow: 0 0 5px rgba($red, 0.1);
+
+      &:focus {
+        box-shadow: 0 0 5px rgba($red, 0.1);
+      }
     }
   }
 
