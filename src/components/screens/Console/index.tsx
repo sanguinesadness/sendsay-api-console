@@ -5,6 +5,7 @@ import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { logout } from "../../../store/actions/auth";
 import Button from "../../ui/Button";
 import Body from "./Body";
+import Footer from "./Footer";
 import Header from "./Header";
 import "./styles/style.css";
 
@@ -33,9 +34,7 @@ const Console = () => {
     <div className="console-screen">
       <Header />
       <Body />
-      <div className="console-screen__footer">
-
-      </div>
+      <Footer/>
     </div>
   );
 };

@@ -224,9 +224,15 @@ h4 {
 }
 
 .console-screen {
-  --screen-padding: 10px 15px;
   height: 100vh;
   overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .console-screen__header,
@@ -396,16 +402,15 @@ h4 {
 .console-screen__body,
 .console-screen .body {
   background: #fff;
-  padding: 10px 15px;
-  height: 100vh;
-  gap: 5px;
+  padding: 15px;
+  gap: 2px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: "row";
-          flex-direction: "row";
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -434,5 +439,59 @@ h4 {
 .console-screen .body .textarea__inner {
   width: 100%;
   height: 100%;
+}
+
+.console-screen__footer,
+.console-screen .footer {
+  padding: 15px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+}
+
+.console-screen__footer__send-button,
+.console-screen .footer__send-button {
+  margin-left: 15px;
+  z-index: 2;
+}
+
+.console-screen__footer__link,
+.console-screen .footer__link {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.console-screen__footer__align-button,
+.console-screen .footer__align-button {
+  padding-right: 0;
+  margin-right: 15px;
+  z-index: 2;
 }
 /*# sourceMappingURL=style.css.map */
