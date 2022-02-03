@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&display=swap");
 *,
 *::after,
 *::before {
@@ -29,13 +30,105 @@
   }
 }
 
+@-webkit-keyframes scale-in-x {
+  0% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+}
+
+@keyframes scale-in-x {
+  0% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+}
+
+@-webkit-keyframes scale-out-x {
+  0% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+}
+
+@keyframes scale-out-x {
+  0% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+}
+
+@-webkit-keyframes scale-in-y {
+  0% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes scale-in-y {
+  0% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@-webkit-keyframes scale-out-y {
+  0% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  100% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+}
+
+@keyframes scale-out-y {
+  0% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  100% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+}
+
 html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   color: #0d0d0d;
+}
+
+body {
+  background: #f7f7f7;
 }
 
 button,
@@ -55,6 +148,76 @@ textarea:focus {
   outline: none;
 }
 
+input[type="password"] {
+  font-family: "Lato", sans-serif;
+  letter-spacing: 2px;
+}
+
+a {
+  color: #999999;
+  text-decoration: none;
+  position: relative;
+  outline: none;
+}
+
+a::before {
+  position: absolute;
+  bottom: -1px;
+  height: 1px;
+  width: 100%;
+  content: "";
+  background: rgba(153, 153, 153, 0.7);
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-animation: scale-out-x 300ms ease 1 forwards;
+          animation: scale-out-x 300ms ease 1 forwards;
+}
+
+a::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  content: "";
+  background: rgba(153, 153, 153, 0.15);
+  -webkit-transform: scaleY(0);
+          transform: scaleY(0);
+  -webkit-animation: scale-out-y 300ms ease 1 forwards;
+          animation: scale-out-y 300ms ease 1 forwards;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+}
+
+a:hover::before {
+  -webkit-animation: scale-in-x 300ms ease 1 forwards;
+          animation: scale-in-x 300ms ease 1 forwards;
+}
+
+a:visited {
+  color: #999999;
+}
+
+a:focus::after {
+  -webkit-animation: scale-in-y 300ms ease 1 forwards;
+          animation: scale-in-y 300ms ease 1 forwards;
+}
+
+a:focus::before {
+  -webkit-animation: scale-in-x 300ms ease 1 forwards;
+          animation: scale-in-x 300ms ease 1 forwards;
+}
+
+h3 {
+  font-size: 1.3em;
+  font-weight: 400;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
 .input {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -65,10 +228,21 @@ textarea:focus {
           flex-direction: column;
 }
 
+.input--error .input__labels__main-label,
+.input--error .labels__main-label {
+  color: #CF2C00;
+}
+
+.input--error .input__inner {
+  border-color: #CF2C00 !important;
+  -webkit-box-shadow: 0 0 5px rgba(207, 44, 0, 0.1) !important;
+          box-shadow: 0 0 5px rgba(207, 44, 0, 0.1) !important;
+}
+
 .input__labels,
 .input .labels {
   font-size: 0.9em;
-  margin-bottom: 7px;
+  margin-bottom: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -79,14 +253,14 @@ textarea:focus {
 
 .input__labels__extra-label,
 .input .labels__extra-label {
-  color: gray;
+  color: #999999;
   font-size: 0.9em;
 }
 
 .input__inner {
   --border-opacity: 0.2;
   background: #fff;
-  padding: 5px 7px;
+  padding: 7px;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, var(--border-opacity));
   -webkit-transition: 200ms ease all;

@@ -1,0 +1,41 @@
+@import "../../../../styles/style.scss";
+
+.error-label {
+  width: 100%;
+  display: flex;
+  padding: 12px;
+  border-radius: 5px;
+  background: rgba($red, 0.1);
+  animation: scale-in-y 300ms ease;
+
+  &__icon,
+  .icon {
+    margin-right: 10px;
+
+    &__inner {
+      stroke: $red;
+
+      & * {
+        stroke: $red;
+      }
+    }
+  }
+
+  &__content,
+  .content {
+    color: $red;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2px 0;
+
+    &__title {
+      margin-bottom: 7px;
+    }
+
+    &__message {
+      opacity: 0.5;
+      font-size: 0.8em;
+    }
+  }
+}

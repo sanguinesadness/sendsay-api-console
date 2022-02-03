@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { FC, HTMLInputTypeAttribute } from "react";
 import "./styles/style.css";
 
@@ -10,6 +11,8 @@ interface InputProps {
   onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   type?: HTMLInputTypeAttribute;
   name?: string;
+  className?: string;
+  error?: boolean;
 }
 
 const Input: FC<InputProps> = ({
@@ -21,9 +24,11 @@ const Input: FC<InputProps> = ({
   onKeyPress,
   type,
   name,
+  className,
+  error,
 }) => {
   return (
-    <div className="input">
+    <div className={classNames("input", className, { "input--error": error })}>
       <div className="input__labels labels">
         {label && <span className="labels__main-label">{label}</span>}
         {extraLabel && (
