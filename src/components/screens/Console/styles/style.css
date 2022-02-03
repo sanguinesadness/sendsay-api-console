@@ -1,0 +1,395 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&display=swap");
+*,
+*::after,
+*::before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@-webkit-keyframes rotating {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotating {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes scale-in-x {
+  0% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+}
+
+@keyframes scale-in-x {
+  0% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+}
+
+@-webkit-keyframes scale-out-x {
+  0% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+}
+
+@keyframes scale-out-x {
+  0% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+}
+
+@-webkit-keyframes scale-in-y {
+  0% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes scale-in-y {
+  0% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@-webkit-keyframes scale-out-y {
+  0% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  100% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+}
+
+@keyframes scale-out-y {
+  0% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  100% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  font-weight: 400;
+  color: #0d0d0d;
+}
+
+body {
+  background: #f7f7f7;
+}
+
+button,
+input,
+textarea {
+  outline: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  background: inherit;
+}
+
+button:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+input[type="password"] {
+  font-family: "Lato", sans-serif;
+  letter-spacing: 2px;
+}
+
+a {
+  color: #999999;
+  text-decoration: none;
+  position: relative;
+  outline: none;
+}
+
+a::before {
+  position: absolute;
+  bottom: -1px;
+  height: 1px;
+  width: 100%;
+  content: "";
+  background: rgba(153, 153, 153, 0.7);
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-animation: scale-out-x 300ms ease 1 forwards;
+          animation: scale-out-x 300ms ease 1 forwards;
+}
+
+a::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  content: "";
+  background: rgba(153, 153, 153, 0.15);
+  -webkit-transform: scaleY(0);
+          transform: scaleY(0);
+  -webkit-animation: scale-out-y 300ms ease 1 forwards;
+          animation: scale-out-y 300ms ease 1 forwards;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+}
+
+a:hover::before {
+  -webkit-animation: scale-in-x 300ms ease 1 forwards;
+          animation: scale-in-x 300ms ease 1 forwards;
+}
+
+a:visited {
+  color: #999999;
+}
+
+a:focus::after {
+  -webkit-animation: scale-in-y 300ms ease 1 forwards;
+          animation: scale-in-y 300ms ease 1 forwards;
+}
+
+a:focus::before {
+  -webkit-animation: scale-in-x 300ms ease 1 forwards;
+          animation: scale-in-x 300ms ease 1 forwards;
+}
+
+h3 {
+  font-size: 1.3em;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
+.console-screen {
+  --screen-padding: 10px 15px;
+  height: 100vh;
+}
+
+.console-screen__header,
+.console-screen .header {
+  background: inherit;
+}
+
+.console-screen__header__top,
+.console-screen__header .top,
+.console-screen .header__top,
+.console-screen .header .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: var(--screen-padding);
+}
+
+.console-screen__header__top__screen-info,
+.console-screen__header__top .screen-info,
+.console-screen__header .top__screen-info,
+.console-screen__header .top .screen-info,
+.console-screen .header__top__screen-info,
+.console-screen .header__top .screen-info,
+.console-screen .header .top__screen-info,
+.console-screen .header .top .screen-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.console-screen__header__top__screen-info__logo,
+.console-screen__header__top .screen-info__logo,
+.console-screen__header .top__screen-info__logo,
+.console-screen__header .top .screen-info__logo,
+.console-screen .header__top__screen-info__logo,
+.console-screen .header__top .screen-info__logo,
+.console-screen .header .top__screen-info__logo,
+.console-screen .header .top .screen-info__logo {
+  margin-right: 30px;
+}
+
+.console-screen__header__top__account,
+.console-screen__header__top .account,
+.console-screen__header .top__account,
+.console-screen__header .top .account,
+.console-screen .header__top__account,
+.console-screen .header__top .account,
+.console-screen .header .top__account,
+.console-screen .header .top .account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: auto;
+}
+
+.console-screen__header__top__account__credentials,
+.console-screen__header__top__account .credentials,
+.console-screen__header__top .account__credentials,
+.console-screen__header__top .account .credentials,
+.console-screen__header .top__account__credentials,
+.console-screen__header .top__account .credentials,
+.console-screen__header .top .account__credentials,
+.console-screen__header .top .account .credentials,
+.console-screen .header__top__account__credentials,
+.console-screen .header__top__account .credentials,
+.console-screen .header__top .account__credentials,
+.console-screen .header__top .account .credentials,
+.console-screen .header .top__account__credentials,
+.console-screen .header .top__account .credentials,
+.console-screen .header .top .account__credentials,
+.console-screen .header .top .account .credentials {
+  margin: 0 20px;
+  padding: 5px 12px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.console-screen__header__top__account__credentials__credential::before,
+.console-screen__header__top__account .credentials__credential::before,
+.console-screen__header__top .account__credentials__credential::before,
+.console-screen__header__top .account .credentials__credential::before,
+.console-screen__header .top__account__credentials__credential::before,
+.console-screen__header .top__account .credentials__credential::before,
+.console-screen__header .top .account__credentials__credential::before,
+.console-screen__header .top .account .credentials__credential::before,
+.console-screen .header__top__account__credentials__credential::before,
+.console-screen .header__top__account .credentials__credential::before,
+.console-screen .header__top .account__credentials__credential::before,
+.console-screen .header__top .account .credentials__credential::before,
+.console-screen .header .top__account__credentials__credential::before,
+.console-screen .header .top__account .credentials__credential::before,
+.console-screen .header .top .account__credentials__credential::before,
+.console-screen .header .top .account .credentials__credential::before {
+  content: ":";
+  color: #999999;
+  padding: 0 5px;
+}
+
+.console-screen__header__top__account__credentials__credential:first-child::before,
+.console-screen__header__top__account .credentials__credential:first-child::before,
+.console-screen__header__top .account__credentials__credential:first-child::before,
+.console-screen__header__top .account .credentials__credential:first-child::before,
+.console-screen__header .top__account__credentials__credential:first-child::before,
+.console-screen__header .top__account .credentials__credential:first-child::before,
+.console-screen__header .top .account__credentials__credential:first-child::before,
+.console-screen__header .top .account .credentials__credential:first-child::before,
+.console-screen .header__top__account__credentials__credential:first-child::before,
+.console-screen .header__top__account .credentials__credential:first-child::before,
+.console-screen .header__top .account__credentials__credential:first-child::before,
+.console-screen .header__top .account .credentials__credential:first-child::before,
+.console-screen .header .top__account__credentials__credential:first-child::before,
+.console-screen .header .top__account .credentials__credential:first-child::before,
+.console-screen .header .top .account__credentials__credential:first-child::before,
+.console-screen .header .top .account .credentials__credential:first-child::before {
+  padding: 0;
+  content: "";
+}
+
+.console-screen__header__top__maximize-button,
+.console-screen__header .top__maximize-button,
+.console-screen .header__top__maximize-button,
+.console-screen .header .top__maximize-button {
+  margin-left: 10px;
+  padding-right: 0;
+}
+
+.console-screen__header__bottom,
+.console-screen__header .bottom,
+.console-screen .header__bottom,
+.console-screen .header .bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 15px;
+}
+
+.console-screen__header__bottom__close-button,
+.console-screen__header .bottom__close-button,
+.console-screen .header__bottom__close-button,
+.console-screen .header .bottom__close-button {
+  padding: 5px 15px;
+  margin-left: 15px;
+  border-radius: 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.console-screen__header > div,
+.console-screen .header > div {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.console-screen__body,
+.console-screen .body {
+  background: #fff;
+  height: 100%;
+}
+/*# sourceMappingURL=style.css.map */

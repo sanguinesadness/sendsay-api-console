@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React, { FC } from "react";
 import { ReactComponent as LoadingIcon } from "../../../assets/icons/loading.svg";
-import { ButtonType } from "../../../types/button-types";
+import { ButtonType, IconPlace } from "../../../types/button";
 import { SvgIcon } from "../../../types/svg-icon";
 import "./styles/style.css";
 
@@ -10,6 +10,7 @@ interface ButtonProps {
   onClick?: () => void;
   text?: string;
   icon?: SvgIcon;
+  iconPlace?: IconPlace;
   disabled?: boolean;
   loading?: boolean;
   className?: string;
@@ -18,6 +19,7 @@ interface ButtonProps {
 const Button: FC<ButtonProps> = ({
   text,
   icon,
+  iconPlace,
   onClick,
   disabled,
   loading,
@@ -38,6 +40,7 @@ const Button: FC<ButtonProps> = ({
         { "button--disabled": disabled },
         { "button--loading": loading },
         { "button--nobg": type === "no-bg" },
+        { "button--icon-right": iconPlace === "right" },
       )}
       onClick={onButtonClick}>
       {Icon && <Icon className="button__icon" />}

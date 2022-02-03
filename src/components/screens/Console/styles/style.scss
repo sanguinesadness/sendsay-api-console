@@ -1,0 +1,86 @@
+@import "../../../../styles/style.scss";
+
+.console-screen {
+  --screen-padding: 10px 15px;
+  height: 100vh;
+
+  &__header,
+  .header {
+    $border-color: rgba(#000, 0.2);
+    background: inherit;
+
+    &__top,
+    .top {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: var(--screen-padding);
+
+      &__screen-info,
+      .screen-info {
+        display: flex;
+        align-items: center;
+
+        &__logo {
+          margin-right: 30px;
+        }
+      }
+
+      &__account,
+      .account {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+
+        &__credentials,
+        .credentials {
+          margin: 0 20px;
+          padding: 5px 12px;
+          border-radius: 5px;
+          border: 1px solid $border-color;
+
+          &__credential {
+            &::before {
+              content: ":";
+              color: $gray;
+              padding: 0 5px;
+            }
+
+            &:first-child::before {
+              padding: 0;
+              content: "";
+            }
+          }
+        }
+      }
+
+      &__maximize-button {
+        margin-left: 10px;
+        padding-right: 0;
+      }
+    }
+
+    &__bottom,
+    .bottom {
+      display: flex;
+      padding-left: 15px;
+
+      &__close-button {
+        padding: 5px 15px;
+        margin-left: 15px;
+        border-radius: 0;
+        border-left: 1px solid $border-color;
+      }
+    }
+
+    & > div {
+      border-bottom: 1px solid $border-color;
+    }
+  }
+
+  &__body,
+  .body {
+    background: #fff;
+    height: 100%;
+  }
+}

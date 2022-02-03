@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { logout } from "../../../store/actions/auth";
 import Button from "../../ui/Button";
+import Body from "./components/HistoryTrack/Body";
+import Header from "./Header";
+import "./styles/style.css"
 
 const Console = () => {
   const dispatch = useDispatch();
@@ -27,11 +30,12 @@ const Console = () => {
   }
 
   return (
-    <div>
-      <div>{authState.data?.login}</div>
-      <div>{authState.data?.sublogin}</div>
-      <div>{authState.data?.password}</div>
-      <Button text="Выйти" onClick={handleLogout} />
+    <div className="console-screen">
+      <Header/>
+      <Body/>
+      <div className="console-screen__footer">
+
+      </div>
     </div>
   );
 };
