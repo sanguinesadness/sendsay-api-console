@@ -231,6 +231,26 @@ h4 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.textarea--error .textarea__label {
+  color: #CF2C00;
+}
+
+.textarea--error .textarea__inner {
+  border-color: #CF2C00;
+  -webkit-box-shadow: 0 0 5px rgba(207, 44, 0, 0.1);
+          box-shadow: 0 0 5px rgba(207, 44, 0, 0.1);
+}
+
+.textarea--error .textarea__inner:focus {
+  -webkit-box-shadow: 0 0 5px rgba(207, 44, 0, 0.1);
+          box-shadow: 0 0 5px rgba(207, 44, 0, 0.1);
 }
 
 .textarea__label {
@@ -244,5 +264,17 @@ h4 {
   border-radius: 5px;
   resize: none;
   padding: 10px;
+  -webkit-transition: 200ms ease all;
+  transition: 200ms ease all;
+}
+
+.textarea__inner:hover {
+  --border-opacity: 0.4;
+}
+
+.textarea__inner:focus {
+  --border-opacity: 0.4;
+  -webkit-box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 /*# sourceMappingURL=style.css.map */

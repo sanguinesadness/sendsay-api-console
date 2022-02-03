@@ -26,7 +26,11 @@ const Header = () => {
                 {authState.data.login}
               </span>
             )}
-            {<span className="credentials__credential">sublogin</span>}
+            {authState.data?.sublogin && (
+              <span className="credentials__credential">
+                {authState.data.sublogin}
+              </span>
+            )}
           </div>
           <Button
             className="account_logout-button"
@@ -43,7 +47,7 @@ const Header = () => {
         />
       </div>
       <div className="header__bottom bottom">
-        <HistoryTrack className="bottom__history-track"/>
+        <HistoryTrack className="bottom__history-track" />
       </div>
     </div>
   );

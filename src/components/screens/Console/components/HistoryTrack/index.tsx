@@ -46,9 +46,15 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
 
   return (
     <div className={classNames("history-track", className)}>
-      <div className="history-track__actions actions" onScroll={onScroll}>
+      <div
+        className="history-track__actions actions"
+        onScroll={onScroll}>
         {actions.map((action, i) => (
-          <TrackItem key={i} action={action} success={false} />
+          <TrackItem
+            key={i}
+            action={action}
+            success={Boolean((Math.floor(Math.random() * 10)) % 2)}
+          />
         ))}
         <div
           className={classNames("actions__fade", "actions__fade--left", {

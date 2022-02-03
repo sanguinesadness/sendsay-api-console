@@ -403,7 +403,9 @@ h4 {
 .console-screen .body {
   background: #fff;
   padding: 15px;
-  gap: 2px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -421,7 +423,8 @@ h4 {
 
 .console-screen__body__drag,
 .console-screen .body__drag {
-  width: 15px;
+  min-width: 15px;
+  min-height: 15px;
   cursor: ew-resize;
 }
 

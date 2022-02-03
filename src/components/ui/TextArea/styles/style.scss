@@ -3,6 +3,22 @@
 .textarea {
   display: flex;
   flex-direction: column;
+  @include no-selection();
+
+  &--error {
+    .textarea__label {
+      color: $red;
+    }
+
+    .textarea__inner {
+      border-color: $red;
+      box-shadow: 0 0 5px rgba($red, 0.1);
+
+      &:focus {
+        box-shadow: 0 0 5px rgba($red, 0.1);
+      }
+    }
+  }
 
   &__label {
     margin-bottom: 5px;
@@ -15,5 +31,15 @@
     border-radius: 5px;
     resize: none;
     padding: 10px;
+    transition: 200ms ease all;
+
+    &:hover {
+      --border-opacity: 0.4;
+    }
+
+    &:focus {
+      --border-opacity: 0.4;
+      box-shadow: 0 0 0 2px rgba(#000, 0.1);
+    }
   }
 }

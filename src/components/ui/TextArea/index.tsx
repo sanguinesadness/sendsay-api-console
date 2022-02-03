@@ -6,11 +6,14 @@ export interface TextAreaProps {
   value: string;
   label?: string;
   placeholder?: string;
+  error?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onKeyPress?: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void;
   name?: string;
   className?: string;
   readOnly?: boolean;
+  width?: number;
+  minWidth?: number;
 }
 
 const TextArea: FC<TextAreaProps> = ({
@@ -22,9 +25,16 @@ const TextArea: FC<TextAreaProps> = ({
   name,
   className,
   readOnly,
+  error,
+  width,
+  minWidth,
 }) => {
   return (
-    <div className={classNames("textarea", className)}>
+    <div
+      className={classNames("textarea", className, {
+        "textarea--error": error,
+      })}
+      style={{ width, minWidth }}>
       {label && <span className="textarea__label">{label}</span>}
       <textarea
         name={name}
