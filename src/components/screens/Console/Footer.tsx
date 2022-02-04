@@ -3,8 +3,14 @@ import { GITHUB_LINK, GITHUB_NAME } from "constants/github";
 import { ReactComponent as AlignIcon } from "assets/icons/align.svg";
 import Button from "components/ui/Button";
 import "./styles/style.css";
+import { useDispatch } from "react-redux";
+import { prettyQuery } from "store/actions/console";
 
 const Footer = () => {
+  const dispatch = useDispatch();
+
+  const alignButtonHandler = () => dispatch(prettyQuery());
+
   return (
     <div className="console-screen__footer footer">
       <Button className="footer__send-button" text="Отправить" type="default" />
@@ -19,6 +25,7 @@ const Footer = () => {
       </div>
       <Button
         className="footer__align-button"
+        onClick={alignButtonHandler}
         text="Форматировать"
         icon={AlignIcon}
         type="no-bg"

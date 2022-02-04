@@ -2,21 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import TextArea from "components/ui/TextArea";
 import { ReactComponent as DragIcon } from "assets/icons/drag.svg";
 import "./styles/style.css";
+import InputArea from "./InputArea";
 
 const Body = () => {
   const bodyRef = useRef<HTMLDivElement>(null);
 
-  const [query, setQuery] = useState<string>("");
   const [inputAreaWidth, setInputAreaWidth] = useState<number>(0);
   const [outputAreaWidth, setOutputAreaWidth] = useState<number>(0);
   const [mouseCaptured, setMouseCaptured] = useState<boolean>(false);
 
   const onMouseCaptureLost = () => setMouseCaptured(false);
   const onMouseCaptureGet = () => setMouseCaptured(true);
-
-  const onQueryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setQuery(event.target.value);
-  };
 
   useEffect(() => {
     const width = bodyRef.current?.clientWidth;
@@ -40,14 +36,7 @@ const Body = () => {
       onMouseUp={onMouseCaptureLost}
       onMouseLeave={onMouseCaptureLost}
       onMouseMove={onBodyMouseMove}>
-      <TextArea
-        className="body__textarea body__textarea--input"
-        label="Запрос:"
-        value={query}
-        onChange={onQueryChange}
-        width={inputAreaWidth}
-        minWidth={100}
-      />
+      <InputArea width={inputAreaWidth} />
       <DragIcon className="body__drag" onMouseDown={onMouseCaptureGet} />
       <TextArea
         className="body__textarea body__textarea--output"
