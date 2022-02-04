@@ -234,9 +234,14 @@ h3 {
 }
 
 .input--error .input__inner {
-  border-color: #CF2C00 !important;
-  -webkit-box-shadow: 0 0 5px rgba(207, 44, 0, 0.1) !important;
-          box-shadow: 0 0 5px rgba(207, 44, 0, 0.1) !important;
+  border-color: #CF2C00;
+  -webkit-box-shadow: 0 0 5px rgba(207, 44, 0, 0.1);
+          box-shadow: 0 0 5px rgba(207, 44, 0, 0.1);
+}
+
+.input--error .input__inner:focus {
+  -webkit-box-shadow: 0 0 5px rgba(207, 44, 0, 0.1);
+          box-shadow: 0 0 5px rgba(207, 44, 0, 0.1);
 }
 
 .input__labels,

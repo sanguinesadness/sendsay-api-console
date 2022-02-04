@@ -1,0 +1,141 @@
+@import "../../../../styles/style.scss";
+
+.console-screen {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &__header,
+  .header {
+    $border-color: rgba(#000, 0.2);
+    background: inherit;
+
+    &__top,
+    .top {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 10px 0 10px 15px;
+
+      &__screen-info,
+      .screen-info {
+        display: flex;
+        align-items: center;
+
+        &__logo {
+          margin-right: 30px;
+        }
+      }
+
+      &__account,
+      .account {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+
+        &__credentials,
+        .credentials {
+          margin: 0 20px;
+          padding: 5px 12px;
+          border-radius: 5px;
+          border: 1px solid $border-color;
+
+          &__credential {
+            &::before {
+              content: ":";
+              color: $gray;
+              padding: 0 5px;
+            }
+
+            &:first-child::before {
+              padding: 0;
+              content: "";
+            }
+          }
+        }
+      }
+
+      &__maximize-button {
+        margin-left: 5px;
+        padding: 5px 15px;
+      }
+    }
+
+    &__bottom,
+    .bottom {
+      display: flex;
+      padding-left: 15px;
+
+      &__history-track,
+      .history-track {
+        &__clear-button {
+          height: 100%;
+          padding: 5px 15px;
+          margin-left: 15px;
+          border-radius: 0;
+          border-left: 1px solid $border-color;
+        }
+      }
+    }
+
+    & > div {
+      border-bottom: 1px solid $border-color;
+    }
+  }
+
+  &__body,
+  .body {
+    background: #fff;
+    padding: 15px;
+    flex: 1;
+    @include flex-centered(row);
+
+    &__drag {
+      min-width: 15px;
+      min-height: 15px;
+      cursor: ew-resize;
+    }
+
+    &__textarea,
+    .textarea {
+      width: 100%;
+      height: 100%;
+
+      &__inner {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__footer,
+  .footer {
+    padding: 15px 0;
+    border-top: 1px solid rgba(#000, 0.2);
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    &__send-button {
+      margin-left: 15px;
+      z-index: 2;
+    }
+
+    &__link {
+      z-index: 1;
+      position: absolute;
+      width: 100%;
+      @include flex-centered();
+    }
+
+    &__align-button {
+      padding-right: 0;
+      margin-right: 15px;
+      z-index: 2;
+    }
+  }
+}

@@ -39,6 +39,22 @@ $red: #CF2C00;
   background: #fff;
 }
 
+@mixin hidden-scrollbar-y {
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+      display: none;
+  }
+}
+
+@mixin hidden-scrollbar-x {
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+      display: none;
+  }
+}
+
 @keyframes rotating {
   0% {
     transform: rotate(0deg);
@@ -175,6 +191,11 @@ a {
 
 h3 {
   font-size: 1.3em;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 1.2em;
   font-weight: 400;
 }
 

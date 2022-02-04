@@ -1,18 +1,16 @@
 @import "../../../../styles/style.scss";
 
-.input {
+.textarea {
   display: flex;
   flex-direction: column;
+  @include no-selection();
 
   &--error {
-    .input__labels,
-    .labels {
-      &__main-label {
-        color: $red;
-      }
+    .textarea__label {
+      color: $red;
     }
 
-    .input__inner {
+    .textarea__inner {
       border-color: $red;
       box-shadow: 0 0 5px rgba($red, 0.1);
 
@@ -22,25 +20,17 @@
     }
   }
 
-  &__labels,
-  .labels {
-    font-size: 0.9em;
+  &__label {
     margin-bottom: 5px;
-    display: flex;
-    justify-content: space-between;
-
-    &__extra-label {
-      color: $gray;
-      font-size: 0.9em;
-    }
+    color: $gray;
+    font-size: 0.9em;
   }
 
   &__inner {
-    --border-opacity: 0.2;
-    background: #fff;
-    padding: 7px;
+    border: 1px solid rgba(#000, 0.2);
     border-radius: 5px;
-    border: 1px solid rgba($color: #000000, $alpha: var(--border-opacity));
+    resize: none;
+    padding: 10px;
     transition: 200ms ease all;
 
     &:hover {

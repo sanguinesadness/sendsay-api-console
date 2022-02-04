@@ -4,15 +4,19 @@ import { useNavigate } from "react-router-dom";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { logout } from "../../../store/actions/auth";
 import Button from "../../ui/Button";
+import Body from "./Body";
+import Footer from "./Footer";
+import Header from "./Header";
+import "./styles/style.css";
 
 const Console = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authState = useTypedSelector((root) => root.auth);
 
-  const goToLogin = () => navigate("/login");
+  const redirectToLogin = () => navigate("/login");
 
-  const doLogout = async () => {
+  const handleLogout = async () => {
     dispatch(logout());
     navigate("/login");
   };
@@ -21,17 +25,16 @@ const Console = () => {
     return (
       <div>
         <span>Не авторизован</span>
-        <Button text="Войти" type="default" onClick={goToLogin} />
+        <Button text="Войти" type="default" onClick={redirectToLogin} />
       </div>
     );
   }
 
   return (
-    <div>
-      <div>{authState.data?.login}</div>
-      <div>{authState.data?.sublogin}</div>
-      <div>{authState.data?.password}</div>
-      <Button text="Выйти" onClick={doLogout} />
+    <div className="console-screen">
+      <Header />
+      <Body />
+      <Footer/>
     </div>
   );
 };
