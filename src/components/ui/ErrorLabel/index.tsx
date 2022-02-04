@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { ReactComponent as MehIcon } from "../../../assets/icons/meh.svg";
+import { ReactComponent as MehIcon } from "assets/icons/meh.svg";
 import "./styles/style.css";
 
 interface ErrorLabelProps {

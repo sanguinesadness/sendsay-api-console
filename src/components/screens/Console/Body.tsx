@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import TextArea from "../../ui/TextArea";
-import { ReactComponent as DragIcon } from "../../../assets/icons/drag.svg";
+import TextArea from "components/ui/TextArea";
+import { ReactComponent as DragIcon } from "assets/icons/drag.svg";
 import "./styles/style.css";
 
 const Body = () => {

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { ReactComponent as LogoIcon } from "../../../assets/icons/logo.svg";
-import { GITHUB_LINK, GITHUB_NAME } from "../../../constants/github";
-import Button from "../../ui/Button";
-import Input from "../../ui/Input";
+import { ReactComponent as LogoIcon } from "assets/icons/logo.svg";
+import { GITHUB_LINK, GITHUB_NAME } from "constants/github";
+import Button from "components/ui/Button";
+import Input from "components/ui/Input";
 import "./styles/style.css";
 import { useDispatch } from "react-redux";
-import { login as loginAction } from "../../../store/actions/auth";
-import { useTypedSelector } from "../../../hooks/useTypedSelector";
-import ErrorLabel from "../../ui/ErrorLabel";
+import { login as loginAction } from "store/actions/auth";
+import { useTypedSelector } from "hooks/useTypedSelector";
+import ErrorLabel from "components/ui/ErrorLabel";
 
 interface InputState {
   value: string;

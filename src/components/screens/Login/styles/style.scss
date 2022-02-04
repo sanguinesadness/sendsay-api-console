@@ -10,12 +10,6 @@
     height: 100%;
     @include flex-centered(column);
 
-    &__header,
-    .header {
-      &__logo {
-      }
-    }
-
     &__form,
     .form {
       margin: 20px 0;
