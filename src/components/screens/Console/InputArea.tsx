@@ -3,6 +3,7 @@ import { useTypedSelector } from "hooks/useTypedSelector";
 import React, { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setQuery } from "store/actions/console";
+import "./styles/style.css";
 
 interface InputAreaProps {
   width: number;

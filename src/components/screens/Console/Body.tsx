@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import TextArea from "components/ui/TextArea";
 import { ReactComponent as DragIcon } from "assets/icons/drag.svg";
 import "./styles/style.css";
 import InputArea from "./InputArea";
+import OutputArea from "./OutputArea";
 
 const Body = () => {
   const bodyRef = useRef<HTMLDivElement>(null);
@@ -38,14 +38,7 @@ const Body = () => {
       onMouseMove={onBodyMouseMove}>
       <InputArea width={inputAreaWidth} />
       <DragIcon className="body__drag" onMouseDown={onMouseCaptureGet} />
-      <TextArea
-        className="body__textarea body__textarea--output"
-        label="Ответ:"
-        value=""
-        width={outputAreaWidth}
-        readOnly
-        minWidth={100}
-      />
+      <OutputArea width={outputAreaWidth} />
     </div>
   );
 };

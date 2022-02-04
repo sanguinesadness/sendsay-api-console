@@ -9,10 +9,10 @@ export interface ConsoleState {
 export enum ConsoleActionTypes {
   SET_QUERY = "SET_QUERY",
   SET_QUERY_ERROR = "SET_QUERY_ERROR",
-  SET_RESULT_ERROR = "SET_RESULT_ERROR",
   SET_RESULT = "SET_RESULT",
   MAKE_REQUEST = "MAKE_REQUEST",
   PRETTY_QUERY = "PRETTY_QUERY",
+  PRETTY_RESULT = "PRETTY_RESULT",
 }
 
 export interface SetQueryAction {
@@ -25,14 +25,9 @@ export interface SetQueryErrorAction {
   payload: boolean;
 }
 
-export interface SetResultErrorAction {
-  type: ConsoleActionTypes.SET_RESULT_ERROR;
-  payload: boolean;
-}
-
 export interface SetResultAction {
   type: ConsoleActionTypes.SET_RESULT;
-  payload: string;
+  payload: { result: string; error: boolean };
 }
 
 export interface MakeRequestAction {
@@ -44,10 +39,15 @@ export interface PrettyQueryAction {
   payload: string;
 }
 
+export interface PrettyResultAction {
+  type: ConsoleActionTypes.PRETTY_RESULT;
+  payload: string;
+}
+
 export type ConsoleAction =
   | SetQueryAction
-  | SetResultErrorAction
   | SetQueryErrorAction
   | SetResultAction
   | MakeRequestAction
+  | PrettyResultAction
   | PrettyQueryAction;
