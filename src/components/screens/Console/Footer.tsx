@@ -1,7 +1,7 @@
 import React from "react";
-import { GITHUB_LINK, GITHUB_NAME } from "../../../constants/github";
-import { ReactComponent as AlignIcon } from "../../../assets/icons/align.svg";
-import Button from "../../ui/Button";
+import { GITHUB_LINK, GITHUB_NAME } from "constants/github";
+import { ReactComponent as AlignIcon } from "assets/icons/align.svg";
+import Button from "components/ui/Button";
 import "./styles/style.css";
 
 const Footer = () => {

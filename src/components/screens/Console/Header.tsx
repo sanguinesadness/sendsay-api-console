@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { ReactComponent as LogoIcon } from "../../../assets/icons/logo.svg";
-import { ReactComponent as LogoutIcon } from "../../../assets/icons/logout.svg";
-import { ReactComponent as MaximizeIcon } from "../../../assets/icons/maximize.svg";
-import { useTypedSelector } from "../../../hooks/useTypedSelector";
-import Button from "../../ui/Button";
+import { ReactComponent as LogoIcon } from "assets/icons/logo.svg";
+import { ReactComponent as LogoutIcon } from "assets/icons/logout.svg";
+import { ReactComponent as MaximizeIcon } from "assets/icons/maximize.svg";
+import { useTypedSelector } from "hooks/useTypedSelector";
+import Button from "components/ui/Button";
 import "./styles/style.css";
 import HistoryTrack from "./components/HistoryTrack";
 

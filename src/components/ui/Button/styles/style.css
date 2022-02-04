@@ -213,6 +213,11 @@ h3 {
   font-weight: 400;
 }
 
+h4 {
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
 #app {
   width: 100vw;
   height: 100vh;

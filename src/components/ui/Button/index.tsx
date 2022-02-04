@@ -1,15 +1,15 @@
 import classNames from "classnames";
 import React, { FC } from "react";
-import { ReactComponent as LoadingIcon } from "../../../assets/icons/loading.svg";
-import { ButtonType, IconPlace } from "../../../types/button";
-import { SvgIcon } from "../../../types/svg-icon";
+import { ReactComponent as LoadingIcon } from "assets/icons/loading.svg";
+import { ButtonType, IconPlace } from "types/button";
+import { SvgIconType } from "types/svg-icon";
 import "./styles/style.css";
 
 interface ButtonProps {
   type?: ButtonType;
   onClick?: () => void;
   text?: string;
-  icon?: SvgIcon;
+  icon?: SvgIconType;
   iconPlace?: IconPlace;
   disabled?: boolean;
   loading?: boolean;
