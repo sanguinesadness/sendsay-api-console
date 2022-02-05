@@ -449,6 +449,7 @@ h4 {
 
 .console-screen__footer,
 .console-screen .footer {
+  margin-top: auto;
   padding: 15px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   background: #fff;

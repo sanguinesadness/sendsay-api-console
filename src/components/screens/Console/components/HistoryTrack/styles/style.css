@@ -311,6 +311,17 @@ h4 {
           box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 5px;
+  cursor: pointer;
+  -webkit-transition: 200ms ease all;
+  transition: 200ms ease all;
+}
+
+.history-track__actions__action:hover,
+.history-track__actions .action:hover,
+.history-track .actions__action:hover,
+.history-track .actions .action:hover {
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
 
 .history-track__actions__action--error .action__status,
@@ -347,14 +358,14 @@ h4 {
   margin-right: 5px;
 }
 
-.history-track__actions__action__dropdown,
-.history-track__actions__action .dropdown,
-.history-track__actions .action__dropdown,
-.history-track__actions .action .dropdown,
-.history-track .actions__action__dropdown,
-.history-track .actions__action .dropdown,
-.history-track .actions .action__dropdown,
-.history-track .actions .action .dropdown {
+.history-track__actions__action__dropdown-button,
+.history-track__actions__action .dropdown-button,
+.history-track__actions .action__dropdown-button,
+.history-track__actions .action .dropdown-button,
+.history-track .actions__action__dropdown-button,
+.history-track .actions__action .dropdown-button,
+.history-track .actions .action__dropdown-button,
+.history-track .actions .action .dropdown-button {
   cursor: pointer;
   padding: 0 5px;
   display: -webkit-box;
@@ -372,14 +383,14 @@ h4 {
           justify-content: center;
 }
 
-.history-track__actions__action__dropdown__icon,
-.history-track__actions__action .dropdown__icon,
-.history-track__actions .action__dropdown__icon,
-.history-track__actions .action .dropdown__icon,
-.history-track .actions__action__dropdown__icon,
-.history-track .actions__action .dropdown__icon,
-.history-track .actions .action__dropdown__icon,
-.history-track .actions .action .dropdown__icon {
+.history-track__actions__action__dropdown-button__icon,
+.history-track__actions__action .dropdown-button__icon,
+.history-track__actions .action__dropdown-button__icon,
+.history-track__actions .action .dropdown-button__icon,
+.history-track .actions__action__dropdown-button__icon,
+.history-track .actions__action .dropdown-button__icon,
+.history-track .actions .action__dropdown-button__icon,
+.history-track .actions .action .dropdown-button__icon {
   height: 1em;
 }
 
