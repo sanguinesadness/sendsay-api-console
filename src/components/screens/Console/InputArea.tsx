@@ -25,7 +25,7 @@ const InputArea: FC<InputAreaProps> = ({ width }) => {
       value={consoleState.query}
       onChange={onQueryChange}
       width={width}
-      minWidth={100}
+      minWidth={400}
     />
   );
 };

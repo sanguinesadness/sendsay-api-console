@@ -11,9 +11,9 @@ const Footer = () => {
   const dispatch = useDispatch();
   const { loading } = useTypedSelector((root) => root.console);
 
-  const alignButtonHandler = () => dispatch(prettyQuery());
+  const handlePretty = () => dispatch(prettyQuery());
 
-  const sendButtonHandler = () => {
+  const handleRequest = () => {
     dispatch(prettyQuery());
     dispatch(makeRequest());
   };
@@ -25,7 +25,7 @@ const Footer = () => {
         text="Отправить"
         loading={loading}
         type="default"
-        onClick={sendButtonHandler}
+        onClick={handleRequest}
       />
       <div className="footer__link link">
         <a
@@ -38,7 +38,7 @@ const Footer = () => {
       </div>
       <Button
         className="footer__align-button"
-        onClick={alignButtonHandler}
+        onClick={handlePretty}
         text="Форматировать"
         icon={AlignIcon}
         type="no-bg"

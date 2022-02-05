@@ -1,6 +1,6 @@
 export const prettyJSON = (json: string): string | null => {
   if (typeof json === "object" && json !== null) {
-    const pretty = JSON.stringify(json, undefined, 4);
+    const pretty = JSON.stringify(json, undefined, 2);
     return pretty;
   }
 
