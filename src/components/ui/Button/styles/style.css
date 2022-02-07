@@ -331,14 +331,16 @@ h4 {
 }
 
 .button__icon {
-  fill: var(--color);
-  stroke: var(--color);
   height: 1.4em;
   width: 1.4em;
 }
 
-.button__icon * {
-  fill: var(--color);
+.button__icon svg {
+  height: 100%;
+  width: 100%;
+}
+
+.button__icon svg * {
   stroke: var(--color);
 }
 
