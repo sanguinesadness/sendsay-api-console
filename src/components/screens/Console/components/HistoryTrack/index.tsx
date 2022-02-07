@@ -33,8 +33,6 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
   const [scrollOffsetX, setScrollOffsetX] = useState<number>(0);
   const [scrollOffsetY, setScrollOffsetY] = useState<number>(0);
 
-  const [windowHeight, setWindowHeight] = useState<number>(0);
-
   const actionsRef = useRef<HTMLDivElement>(null);
 
   const handleActionsScroll = (
@@ -67,18 +65,6 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
     };
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowHeight(document.documentElement.clientHeight);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
     <div className={classNames("history-track", className)}>
       <div
@@ -90,7 +76,6 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
             key={action + i}
             action={action}
             success={false}
-            windowHeight={windowHeight}
             scrollOffsetLeft={scrollOffsetX}
             scrollOffsetTop={scrollOffsetY}
             wrapperOffsetLeft={actionsRef.current?.offsetLeft || 0}

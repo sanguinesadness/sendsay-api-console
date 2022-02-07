@@ -41,7 +41,6 @@ interface TrackItemProps {
   scrollOffsetTop: number;
   wrapperOffsetLeft: number;
   wrapperOffsetTop: number;
-  windowHeight: number;
 }
 
 const TrackItem: FC<TrackItemProps> = ({
@@ -51,7 +50,6 @@ const TrackItem: FC<TrackItemProps> = ({
   scrollOffsetTop,
   wrapperOffsetLeft,
   wrapperOffsetTop,
-  windowHeight
 }) => {
   const [dropdownOpened, setDropdownOpened] = useState<boolean>(false);
   const toggleDropdown = () => setDropdownOpened((prev) => !prev);
@@ -91,7 +89,6 @@ const TrackItem: FC<TrackItemProps> = ({
         offsetLeft={offsetLeft}
         offsetTop={offsetTop + 5}
         options={dropdownOptions}
-        windowHeight={windowHeight}
       />
     </React.Fragment>
   );

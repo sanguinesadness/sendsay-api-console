@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { useOutsideClicker } from "hooks/useOutsideClicker";
+import { useTypedSelector } from "hooks/useTypedSelector";
 import React, { FC, useEffect, useRef, useState } from "react";
 import { DropdownOption } from "store/types/dropdown";
 import "./styles/style.css";
@@ -11,7 +12,6 @@ export interface DropdownProps {
   height: number;
   offsetTop: number;
   offsetLeft: number;
-  windowHeight: number;
 }
 
 const Dropdown: FC<DropdownProps> = ({
@@ -21,10 +21,11 @@ const Dropdown: FC<DropdownProps> = ({
   height,
   offsetTop,
   offsetLeft,
-  windowHeight,
 }) => {
   const [openInner, setOpenInner] = useState<boolean>(open);
   const [offsetTopInner, setOffsetTopInner] = useState<number>(offsetTop);
+
+  const windowState = useTypedSelector((root) => root.window);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -36,20 +37,19 @@ const Dropdown: FC<DropdownProps> = ({
     setOpenInner(open);
   }, [open]);
 
-  useOutsideClicker(() => {
-    setOpenInner(false);
-  }, [dropdownRef]);
-
   useEffect(() => {
     if (!openInner || !dropdownRef.current) return;
 
     const heightWidthOffset = dropdownRef.current.clientHeight + offsetTop;
-    const difference =
-      document.documentElement.clientHeight - heightWidthOffset - height;
+    const difference = windowState.height - heightWidthOffset - height;
 
     if (difference < 0) setOffsetTopInner(offsetTop + difference);
     else setOffsetTopInner(offsetTop);
-  }, [windowHeight]);
+  }, [windowState.height, openInner]);
+
+  useOutsideClicker(() => {
+    setOpenInner(false);
+  }, [dropdownRef]);
 
   return (
     <div
