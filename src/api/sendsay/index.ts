@@ -50,4 +50,15 @@ export default class SendsayApi {
     localStorage.removeItem("password");
     localStorage.removeItem("sublogin");
   }
+
+  public static async makeRequest(json: any) {
+    return new Promise((resolve, reject) => {
+      this._sendsay
+        .request(json)
+        .then((resp: SendsaySuccess) => {
+          resolve(resp);
+        })
+        .catch((err: SendsayError) => reject(err));
+    });
+  }
 }
