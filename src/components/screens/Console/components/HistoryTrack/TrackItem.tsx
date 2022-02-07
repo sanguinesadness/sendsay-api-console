@@ -37,17 +37,21 @@ const dropdownOptions: DropdownOption[] = [
 interface TrackItemProps {
   action: string;
   success: boolean;
-  scrollOffset: number;
+  scrollOffsetLeft: number;
+  scrollOffsetTop: number;
   wrapperOffsetLeft: number;
   wrapperOffsetTop: number;
+  windowHeight: number;
 }
 
 const TrackItem: FC<TrackItemProps> = ({
   action,
   success,
-  scrollOffset,
+  scrollOffsetLeft,
+  scrollOffsetTop,
   wrapperOffsetLeft,
   wrapperOffsetTop,
+  windowHeight
 }) => {
   const [dropdownOpened, setDropdownOpened] = useState<boolean>(false);
   const toggleDropdown = () => setDropdownOpened((prev) => !prev);
@@ -57,8 +61,9 @@ const TrackItem: FC<TrackItemProps> = ({
   const actionWidth = actionRef.current?.offsetWidth || 0;
   const actionHeight = actionRef.current?.offsetHeight || 0;
   const offsetLeft =
-    (actionRef.current?.offsetLeft || 0) - scrollOffset + wrapperOffsetLeft;
-  const offsetTop = (actionRef.current?.offsetTop || 0) + wrapperOffsetTop;
+    (actionRef.current?.offsetLeft || 0) - scrollOffsetLeft + wrapperOffsetLeft;
+  const offsetTop =
+    (actionRef.current?.offsetTop || 0) - scrollOffsetTop + wrapperOffsetTop;
 
   return (
     <React.Fragment>
@@ -82,9 +87,11 @@ const TrackItem: FC<TrackItemProps> = ({
       <Dropdown
         open={dropdownOpened}
         width={actionWidth}
+        height={actionHeight}
         offsetLeft={offsetLeft}
-        offsetTop={offsetTop + actionHeight + 5}
+        offsetTop={offsetTop + 5}
         options={dropdownOptions}
+        windowHeight={windowHeight}
       />
     </React.Fragment>
   );

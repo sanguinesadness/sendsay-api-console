@@ -29,7 +29,11 @@ interface HistoryTrackProps {
 const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
   const [leftFadeVisible, setLeftFadeVisible] = useState<boolean>(false);
   const [rightFadeVisible, setRightFadeVisible] = useState<boolean>(true);
-  const [actionsScrollOffset, setActionsScrollOffset] = useState<number>(0);
+
+  const [scrollOffsetX, setScrollOffsetX] = useState<number>(0);
+  const [scrollOffsetY, setScrollOffsetY] = useState<number>(0);
+
+  const [windowHeight, setWindowHeight] = useState<number>(0);
 
   const actionsRef = useRef<HTMLDivElement>(null);
 
@@ -42,7 +46,7 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
       event.currentTarget.clientWidth;
     const scrollLeft = event.currentTarget.scrollLeft;
 
-    setActionsScrollOffset(scrollLeft);
+    setScrollOffsetX(scrollLeft);
 
     if (scrollLeft > 0) setLeftFadeVisible(true);
     else setLeftFadeVisible(false);
@@ -50,6 +54,30 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
     if (scrollRight > 0) setRightFadeVisible(true);
     else setRightFadeVisible(false);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollOffsetY(document.scrollingElement?.scrollTop || 0);
+    };
+
+    document.addEventListener("scroll", handleScroll);
+
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(document.documentElement.clientHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div className={classNames("history-track", className)}>
@@ -62,7 +90,9 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
             key={action + i}
             action={action}
             success={false}
-            scrollOffset={actionsScrollOffset}
+            windowHeight={windowHeight}
+            scrollOffsetLeft={scrollOffsetX}
+            scrollOffsetTop={scrollOffsetY}
             wrapperOffsetLeft={actionsRef.current?.offsetLeft || 0}
             wrapperOffsetTop={actionsRef.current?.offsetTop || 0}
           />

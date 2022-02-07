@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useOutsideAlerter } from "hooks/useOutsideAlerter";
+import { useOutsideClicker } from "hooks/useOutsideClicker";
 import React, { FC, useEffect, useRef, useState } from "react";
 import { DropdownOption } from "store/types/dropdown";
 import "./styles/style.css";
@@ -8,33 +8,58 @@ export interface DropdownProps {
   open: boolean;
   options: DropdownOption[];
   width: number;
+  height: number;
   offsetTop: number;
   offsetLeft: number;
+  windowHeight: number;
 }
 
 const Dropdown: FC<DropdownProps> = ({
   open,
   options,
   width,
+  height,
   offsetTop,
   offsetLeft,
+  windowHeight,
 }) => {
-  const [opened, setOpened] = useState<boolean>(open);
+  const [openInner, setOpenInner] = useState<boolean>(open);
+  const [offsetTopInner, setOffsetTopInner] = useState<number>(offsetTop);
+
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setOpened(open);
+    setOffsetTopInner(offsetTop);
+  }, [offsetTop]);
+
+  useEffect(() => {
+    setOpenInner(open);
   }, [open]);
 
-  useOutsideAlerter(() => {
-    setOpened(false);
+  useOutsideClicker(() => {
+    setOpenInner(false);
   }, [dropdownRef]);
+
+  useEffect(() => {
+    if (!openInner || !dropdownRef.current) return;
+
+    const heightWidthOffset = dropdownRef.current.clientHeight + offsetTop;
+    const difference =
+      document.documentElement.clientHeight - heightWidthOffset - height;
+
+    if (difference < 0) setOffsetTopInner(offsetTop + difference);
+    else setOffsetTopInner(offsetTop);
+  }, [windowHeight]);
 
   return (
     <div
-      className={classNames("dropdown", { "dropdown--opened": opened })}
+      className={classNames("dropdown", { "dropdown--opened": openInner })}
       ref={dropdownRef}
-      style={{ minWidth: width, top: offsetTop, left: offsetLeft }}>
+      style={{
+        minWidth: width,
+        top: offsetTopInner + height,
+        left: offsetLeft,
+      }}>
       {options.map((option, i) =>
         option === null ? (
           <span key={i} className="dropdown__separator" />
