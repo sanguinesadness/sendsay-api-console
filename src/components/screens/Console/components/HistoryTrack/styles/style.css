@@ -236,6 +236,7 @@ h4 {
 
 .history-track__actions,
 .history-track .actions {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -356,6 +357,7 @@ h4 {
 .history-track .actions .action__action-name {
   margin-left: 10px;
   margin-right: 5px;
+  white-space: nowrap;
 }
 
 .history-track__actions__action__dropdown-button,

@@ -1,6 +1,7 @@
 import { AuthDto } from "./types/auth.dto";
 import { sendsay } from "./sendsay-to-ts";
 import { SendsayError, SendsaySuccess } from "./types/response";
+import { SendsayRequest } from "./types/request";
 
 export default class SendsayApi {
   private static _sendsay = sendsay;
@@ -26,7 +27,7 @@ export default class SendsayApi {
     }
   }
 
-  public static async login(dto: AuthDto): Promise<SendsaySuccess> {
+  public static async login(dto: AuthDto): Promise<void> {
     return new Promise((resolve, reject) => {
       return this._sendsay
         .login(dto)
@@ -36,7 +37,7 @@ export default class SendsayApi {
           localStorage.setItem("sublogin", dto.sublogin || "");
 
           document.cookie = `session_id=${this._sendsay.session}`;
-          resolve({ code: 200 });
+          resolve();
         })
         .catch((err: SendsayError) => {
           reject(err);
@@ -51,10 +52,10 @@ export default class SendsayApi {
     localStorage.removeItem("sublogin");
   }
 
-  public static async makeRequest(json: any) {
+  public static async makeRequest(request: SendsayRequest) {
     return new Promise((resolve, reject) => {
       this._sendsay
-        .request(json)
+        .request(request)
         .then((resp: SendsaySuccess) => {
           resolve(resp);
         })

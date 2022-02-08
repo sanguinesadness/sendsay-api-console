@@ -380,6 +380,17 @@ h4 {
   padding-left: 15px;
 }
 
+.console-screen__header__bottom__history-track,
+.console-screen__header__bottom .history-track,
+.console-screen__header .bottom__history-track,
+.console-screen__header .bottom .history-track,
+.console-screen .header__bottom__history-track,
+.console-screen .header__bottom .history-track,
+.console-screen .header .bottom__history-track,
+.console-screen .header .bottom .history-track {
+  min-height: 48px;
+}
+
 .console-screen__header__bottom__history-track__clear-button,
 .console-screen__header__bottom .history-track__clear-button,
 .console-screen__header .bottom__history-track__clear-button,

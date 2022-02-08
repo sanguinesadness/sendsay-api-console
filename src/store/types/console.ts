@@ -1,32 +1,41 @@
+import { HistoryTrackItem } from "./history-track";
+
 export interface ConsoleState {
-  query: string;
-  result: string;
+  lastItem?: HistoryTrackItem;
+  request: string;
+  response: string;
   loading: boolean;
-  queryError?: boolean;
-  resultError?: boolean;
+  requestError?: boolean;
+  responseError?: boolean;
 }
 
 export enum ConsoleActionTypes {
-  SET_QUERY = "SET_QUERY",
-  SET_QUERY_ERROR = "SET_QUERY_ERROR",
-  SET_RESULT = "SET_RESULT",
+  SET_LAST_ITEM = "SET_LAST_ITEM",
+  SET_REQUEST = "SET_REQUEST",
+  SET_REQUEST_ERROR = "SET_REQUEST_ERROR",
+  SET_RESPONSE = "SET_RESPONSE",
   MAKE_REQUEST = "MAKE_REQUEST",
-  PRETTY_QUERY = "PRETTY_QUERY",
-  PRETTY_RESULT = "PRETTY_RESULT",
+  PRETTY_REQUEST = "PRETTY_REQUEST",
+  PRETTY_RESPONSE = "PRETTY_RESULT",
 }
 
-export interface SetQueryAction {
-  type: ConsoleActionTypes.SET_QUERY;
+export interface SetLastItemAction {
+  type: ConsoleActionTypes.SET_LAST_ITEM;
+  payload: Pick<HistoryTrackItem, "requestBody" | "error">;
+}
+
+export interface SetRequestAction {
+  type: ConsoleActionTypes.SET_REQUEST;
   payload: string;
 }
 
-export interface SetQueryErrorAction {
-  type: ConsoleActionTypes.SET_QUERY_ERROR;
+export interface SetRequestErrorAction {
+  type: ConsoleActionTypes.SET_REQUEST_ERROR;
   payload: boolean;
 }
 
-export interface SetResultAction {
-  type: ConsoleActionTypes.SET_RESULT;
+export interface SetResponseAction {
+  type: ConsoleActionTypes.SET_RESPONSE;
   payload: { result: string; error: boolean };
 }
 
@@ -34,20 +43,21 @@ export interface MakeRequestAction {
   type: ConsoleActionTypes.MAKE_REQUEST;
 }
 
-export interface PrettyQueryAction {
-  type: ConsoleActionTypes.PRETTY_QUERY;
+export interface PrettyRequestAction {
+  type: ConsoleActionTypes.PRETTY_REQUEST;
   payload: string;
 }
 
-export interface PrettyResultAction {
-  type: ConsoleActionTypes.PRETTY_RESULT;
+export interface PrettyResponseAction {
+  type: ConsoleActionTypes.PRETTY_RESPONSE;
   payload: string;
 }
 
 export type ConsoleAction =
-  | SetQueryAction
-  | SetQueryErrorAction
-  | SetResultAction
+  | SetLastItemAction
+  | SetRequestAction
+  | SetRequestErrorAction
+  | SetResponseAction
   | MakeRequestAction
-  | PrettyResultAction
-  | PrettyQueryAction;
+  | PrettyResponseAction
+  | PrettyRequestAction;

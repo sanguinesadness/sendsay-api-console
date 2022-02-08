@@ -4,7 +4,7 @@ import React from "react";
 import { useEffect } from "react";
 import { FC } from "react";
 import { useDispatch } from "react-redux";
-import { prettyResult } from "store/actions/console";
+import { prettyResponse } from "store/actions/console";
 import "./styles/style.css";
 
 interface OutputAreaProps {
@@ -13,10 +13,10 @@ interface OutputAreaProps {
 
 const OutputArea: FC<OutputAreaProps> = ({ width }) => {
   const dispatch = useDispatch();
-  const { result, resultError } = useTypedSelector((root) => root.console);
+  const { response: result, responseError: resultError } = useTypedSelector((root) => root.console);
 
   useEffect(() => {
-    dispatch(prettyResult());
+    dispatch(prettyResponse());
   }, [result]);
 
   return (

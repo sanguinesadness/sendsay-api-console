@@ -3,30 +3,21 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import Button from "../../../../ui/Button";
 import { ReactComponent as CloseIcon } from "../../../../../assets/icons/close.svg";
 import TrackItem from "./TrackItem";
-
-const actions = [
-  "track.get",
-  "issue.send",
-  "pong",
-  "track.get",
-  "stat.uni",
-  "track.get",
-  "sys.settings.get",
-  "track.get",
-  "track.get",
-  "pong",
-  "issue.send",
-  "sys.settings.get",
-  "issue.send",
-  "issue.send",
-  "sys.settings.get",
-];
+import { useTypedSelector } from "hooks/useTypedSelector";
+import { useDispatch } from "react-redux";
+import {
+  clearHistoryTrack,
+  restoreHistoryTrack,
+} from "store/actions/history-track";
 
 interface HistoryTrackProps {
   className?: string;
 }
 
 const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
+  const { items } = useTypedSelector((root) => root.historyTrack);
+  const dispatch = useDispatch();
+
   const [leftFadeVisible, setLeftFadeVisible] = useState<boolean>(false);
   const [rightFadeVisible, setRightFadeVisible] = useState<boolean>(true);
 
@@ -53,7 +44,13 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
     else setRightFadeVisible(false);
   };
 
+  const handleClearClick = () => {
+    dispatch(clearHistoryTrack());
+  };
+
   useEffect(() => {
+    dispatch(restoreHistoryTrack());
+
     const handleScroll = () => {
       setScrollOffsetY(document.scrollingElement?.scrollTop || 0);
     };
@@ -71,11 +68,10 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
         className="history-track__actions actions"
         onScroll={handleActionsScroll}
         ref={actionsRef}>
-        {actions.map((action, i) => (
+        {items.map((item) => (
           <TrackItem
-            key={action + i}
-            action={action}
-            success={false}
+            key={item.id}
+            item={item}
             scrollOffsetLeft={scrollOffsetX}
             scrollOffsetTop={scrollOffsetY}
             wrapperOffsetLeft={actionsRef.current?.offsetLeft || 0}
@@ -98,6 +94,7 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
       <Button
         className="history-track__clear-button"
         icon={CloseIcon}
+        onClick={handleClearClick}
         type="no-bg"
       />
     </div>

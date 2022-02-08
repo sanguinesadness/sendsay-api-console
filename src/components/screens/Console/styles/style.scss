@@ -69,6 +69,8 @@
 
       &__history-track,
       .history-track {
+        min-height: 48px;
+
         &__clear-button {
           height: 100%;
           padding: 5px 15px;

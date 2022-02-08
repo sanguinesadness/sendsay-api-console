@@ -3,60 +3,80 @@ import { Dispatch } from "react";
 import { store } from "store";
 import { ConsoleAction, ConsoleActionTypes } from "store/types/console";
 import sendsayApi from "api/sendsay";
+import { SendsayRequest } from "api/sendsay/types/request";
 
-export const setQuery = (query: string) => {
+export const setRequest = (query: string) => {
   return (dispatch: Dispatch<ConsoleAction>) => {
-    dispatch({ type: ConsoleActionTypes.SET_QUERY, payload: query });
+    dispatch({ type: ConsoleActionTypes.SET_REQUEST, payload: query });
   };
 };
 
-export const setResult = (result: string, error: boolean) => {
+export const setResponse = (result: string, error: boolean) => {
   return (dispatch: Dispatch<ConsoleAction>) => {
     dispatch({
-      type: ConsoleActionTypes.SET_RESULT,
+      type: ConsoleActionTypes.SET_RESPONSE,
       payload: { result, error },
     });
   };
 };
 
-export const setQueryError = (error: boolean) => {
+export const setRequestError = (error: boolean) => {
   return (dispatch: Dispatch<ConsoleAction>) => {
-    dispatch({ type: ConsoleActionTypes.SET_QUERY_ERROR, payload: error });
+    dispatch({ type: ConsoleActionTypes.SET_REQUEST_ERROR, payload: error });
   };
 };
 
-export const makeRequest = () => {
+export const makeRequest = (queryStr: string) => {
   return async (dispatch: Dispatch<ConsoleAction>) => {
     dispatch({ type: ConsoleActionTypes.MAKE_REQUEST });
 
-    const query = store.getState().console.query;
-
-    // try parse input query as JSON
-    let queryJSON;
+    // try parse input queryStr as SendsayRequest
+    let request: SendsayRequest;
     try {
-      queryJSON = JSON.parse(query);
+      request = JSON.parse(queryStr);
+      if (!request.action) throw new Error();
     } catch {
-      dispatch({ type: ConsoleActionTypes.SET_QUERY_ERROR, payload: true });
+      dispatch({ type: ConsoleActionTypes.SET_REQUEST_ERROR, payload: true });
       return;
     }
 
     // make request
     sendsayApi
-      .makeRequest(queryJSON)
+      .makeRequest(request)
       .then((resp) => {
+        // set successful Console result
         dispatch({
-          type: ConsoleActionTypes.SET_RESULT,
+          type: ConsoleActionTypes.SET_RESPONSE,
           payload: {
             result: JSON.stringify(resp),
             error: false,
           },
         });
+
+        // set last successful Console request
+        dispatch({
+          type: ConsoleActionTypes.SET_LAST_ITEM,
+          payload: {
+            requestBody: request,
+            error: false,
+          },
+        });
       })
       .catch((err) => {
+        // set wrong Console result
         dispatch({
-          type: ConsoleActionTypes.SET_RESULT,
+          type: ConsoleActionTypes.SET_RESPONSE,
           payload: {
             result: JSON.stringify(err),
+            error: true,
+          },
+        });
+
+        // set last wrong Console request
+        dispatch({
+          type: ConsoleActionTypes.SET_LAST_ITEM,
+          payload: {
+            requestBody: request,
             error: true,
           },
         });
@@ -64,27 +84,30 @@ export const makeRequest = () => {
   };
 };
 
-export const prettyQuery = () => {
+export const prettyRequest = () => {
   return (dispatch: Dispatch<ConsoleAction>) => {
-    const query = store.getState().console.query;
+    const query = store.getState().console.request;
     const prettyQuery = prettyJSON(query);
 
     if (prettyQuery) {
-      dispatch({ type: ConsoleActionTypes.PRETTY_QUERY, payload: prettyQuery });
+      dispatch({
+        type: ConsoleActionTypes.PRETTY_REQUEST,
+        payload: prettyQuery,
+      });
     } else {
-      dispatch({ type: ConsoleActionTypes.SET_QUERY_ERROR, payload: true });
+      dispatch({ type: ConsoleActionTypes.SET_REQUEST_ERROR, payload: true });
     }
   };
 };
 
-export const prettyResult = () => {
+export const prettyResponse = () => {
   return (dispatch: Dispatch<ConsoleAction>) => {
-    const result = store.getState().console.result;
+    const result = store.getState().console.response;
     const prettyResult = prettyJSON(result);
 
     if (prettyResult) {
       dispatch({
-        type: ConsoleActionTypes.PRETTY_RESULT,
+        type: ConsoleActionTypes.PRETTY_RESPONSE,
         payload: prettyResult,
       });
     }
