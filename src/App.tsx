@@ -6,6 +6,7 @@ import Console from "./components/screens/Console";
 import Login from "./components/screens/Login";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 import { checkAuth } from "./store/actions/auth";
+import { ReactComponent as LoadingIcon } from "assets/icons/loading.svg";
 import "./styles/style.css";
 
 function App() {
@@ -28,6 +29,14 @@ function App() {
     if (authState.loggedIn) navigate("/console");
     else navigate("/login");
   }, [authState.loggedIn]);
+
+  if (authState.loading) {
+    return (
+      <div className="page-loading">
+        <LoadingIcon className="page-loading__icon" />
+      </div>
+    );
+  }
 
   return (
     <div id="app">

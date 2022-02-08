@@ -1,6 +1,7 @@
 import React, { FC, useRef, useState } from "react";
 import "./styles/style.css";
-import { ReactComponent as DragIcon } from "../../../../../assets/icons/drag.svg";
+import { ReactComponent as DragIcon } from "assets/icons/drag.svg";
+import { ReactComponent as CheckIcon } from "assets/icons/check.svg";
 import classNames from "classnames";
 import Dropdown from "components/ui/Dropdown";
 import { DropdownOption } from "types/dropdown";
@@ -11,6 +12,15 @@ import { useTypedSelector } from "hooks/useTypedSelector";
 import { makeRequest, prettyRequest, setRequest } from "store/actions/console";
 import { prettyJSON } from "common/json-prettier";
 import { deleteHistoryTrackItem } from "store/actions/history-track";
+
+export enum CopyStates {
+  // normal state
+  IDLE = "IDLE",
+  // state after user clicked "Скопировать"
+  COPIED = "COPIED",
+  // state after some time of floating - flying away
+  AWAY = "AWAY",
+}
 
 interface TrackItemProps {
   item: HistoryTrackItem;
@@ -30,6 +40,8 @@ const TrackItem: FC<TrackItemProps> = ({
   const dispatch = useDispatch();
   const historyTrackState = useTypedSelector((root) => root.historyTrack);
 
+  const [copyState, setCopyState] = useState<CopyStates>(CopyStates.IDLE);
+
   const [dropdownOpened, setDropdownOpened] = useState<boolean>(false);
   const toggleDropdown = () => setDropdownOpened((prev) => !prev);
 
@@ -42,6 +54,14 @@ const TrackItem: FC<TrackItemProps> = ({
     (itemRef.current?.offsetLeft || 0) - scrollOffsetLeft + wrapperOffsetLeft;
   const offsetTop =
     (itemRef.current?.offsetTop || 0) - scrollOffsetTop + wrapperOffsetTop;
+
+  const switchCopyStates = () => {
+    setCopyState(CopyStates.COPIED);
+    setTimeout(() => {
+      setCopyState(CopyStates.AWAY);
+      setTimeout(() => setCopyState(CopyStates.IDLE), 500);
+    }, 2000);
+  };
 
   const getItemQueryStr = (): string | null => {
     const trackItem = historyTrackState.items.find((i) => i.id === item.id);
@@ -84,6 +104,8 @@ const TrackItem: FC<TrackItemProps> = ({
     const prettyQuery = prettyJSON(queryStr);
     if (prettyQuery) navigator.clipboard.writeText(prettyQuery);
     else navigator.clipboard.writeText(queryStr);
+
+    switchCopyStates();
   };
 
   const handleDeleteClick = () => {
@@ -125,7 +147,18 @@ const TrackItem: FC<TrackItemProps> = ({
         ref={itemRef}
         onClick={handleItemClick}>
         <span className="action__status" />
-        <span className="action__action-name">{item.requestBody.action}</span>
+        <span className="action__info info">
+          <span className="info__name">{item.requestBody.action}</span>
+          <span
+            className={classNames(
+              "info__copy-state",
+              { "info__copy-state--idle": copyState === CopyStates.IDLE },
+              { "info__copy-state--copied": copyState === CopyStates.COPIED },
+              { "info__copy-state--away": copyState === CopyStates.AWAY },
+            )}>
+            {itemWidth < 150 ? <CheckIcon /> : "Скопировано"}
+          </span>
+        </span>
         <div
           className="action__dropdown-button dropdown-button"
           onClick={toggleDropdown}

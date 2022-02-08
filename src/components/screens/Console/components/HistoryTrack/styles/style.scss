@@ -68,17 +68,18 @@
       padding: 5px;
       cursor: pointer;
       transition: 200ms ease all;
+      overflow: hidden;
 
       &:hover {
         box-shadow: 0 1px 4px rgba(#000, 0.25);
       }
 
       &--error .action__status {
-        background: #cf2c00;
+        background: $red;
       }
 
       &--success .action__status {
-        background: #30b800;
+        background: $green;
       }
 
       &__status {
@@ -90,10 +91,59 @@
         margin-left: 5px;
       }
 
-      &__action-name {
+      &__info,
+      .action__info {
         margin-left: 10px;
         margin-right: 5px;
-        white-space: nowrap;
+        position: relative;
+        @include flex-centered();
+
+        &__name {
+          white-space: nowrap;
+        }
+
+        &__copy-state,
+        .info__copy-state {
+          position: absolute;
+          left: 0;
+          height: 110%;
+          width: 100%;
+          transition: 500ms ease all;
+          pointer-events: all;
+          background: $light-gray;
+          border-radius: 5px;
+          padding: 4px 7px;
+          font-size: 0.7em;
+          text-align: center;
+          @include no-selection();
+          @include text-ellipsis();
+
+          svg {
+            height: 1.3em;
+            width: 1.3em;
+
+            & > * {
+              stroke: $green;
+            }
+          }
+
+          &--idle {
+            transform: translateY(-100%);
+            visibility: hidden;
+            opacity: 0;
+          }
+
+          &--copied {
+            transform: translateY(0);
+            visibility: visible;
+            opacity: 1;
+          }
+
+          &--away {
+            transform: translateY(-100%);
+            opacity: 0;
+          }
+        }
       }
 
       &__dropdown-button,

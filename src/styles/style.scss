@@ -16,6 +16,7 @@ $dark: #0d0d0d;
 $gray: #999999;
 $light-gray: #f7f7f7;
 $red: #cf2c00;
+$green: #30b800;
 
 @mixin no-selection() {
   -webkit-touch-callout: none;
@@ -24,6 +25,12 @@ $red: #cf2c00;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+@mixin text-ellipsis() {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 @mixin font-monospace() {
@@ -207,4 +214,24 @@ h4 {
 #app {
   width: 100vw;
   height: 100vh;
+}
+
+.page-loading {
+  width: 100vw;
+  height: 100vh;
+  @include flex-centered();
+
+  &__icon {
+    stroke: $dark;
+    fill: $dark;
+
+    & * {
+      stroke: $dark;
+      fill: $dark;
+    }
+
+    height: 5em;
+    width: 5em;
+    animation: rotating 5s linear infinite;
+  }
 }
