@@ -68,16 +68,20 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
         className="history-track__actions actions"
         onScroll={handleActionsScroll}
         ref={actionsRef}>
-        {items.map((item) => (
-          <TrackItem
-            key={item.id}
-            item={item}
-            scrollOffsetLeft={scrollOffsetX}
-            scrollOffsetTop={scrollOffsetY}
-            wrapperOffsetLeft={actionsRef.current?.offsetLeft || 0}
-            wrapperOffsetTop={actionsRef.current?.offsetTop || 0}
-          />
-        ))}
+        {items.length > 0 ? (
+          items.map((item) => (
+            <TrackItem
+              key={item.id}
+              item={item}
+              scrollOffsetLeft={scrollOffsetX}
+              scrollOffsetTop={scrollOffsetY}
+              wrapperOffsetLeft={actionsRef.current?.offsetLeft || 0}
+              wrapperOffsetTop={actionsRef.current?.offsetTop || 0}
+            />
+          ))
+        ) : (
+          <span className="actions__empty-label">История запросов пуста</span>
+        )}
         <div
           className={classNames("actions__fade", "actions__fade--left", {
             "actions__fade--visible": leftFadeVisible,

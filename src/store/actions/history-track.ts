@@ -6,13 +6,16 @@ import {
   HistoryTrackItem,
 } from "store/types/history-track";
 
+const updateLocalStorage = () => {
+  const items = store.getState().historyTrack.items;
+  localStorage.removeItem("history-track");
+  localStorage.setItem("history-track", JSON.stringify(items));
+};
+
 export const addHistoryTrackItem = (item: HistoryTrackItem) => {
   return (dispatch: Dispatch<HistoryTrackAction>) => {
     dispatch({ type: HistoryTrackActionTypes.ADD_HISTORY_ITEM, payload: item });
-
-    const items = store.getState().historyTrack.items;
-    localStorage.removeItem("history-track");
-    localStorage.setItem("history-track", JSON.stringify(items));
+    updateLocalStorage();
   };
 };
 
@@ -22,12 +25,14 @@ export const deleteHistoryTrackItem = (itemId: string) => {
       type: HistoryTrackActionTypes.DELETE_HISTORY_ITEM,
       payload: itemId,
     });
+    updateLocalStorage();
   };
 };
 
 export const clearHistoryTrack = () => {
   return (dispatch: Dispatch<HistoryTrackAction>) => {
     dispatch({ type: HistoryTrackActionTypes.CLEAR_HISTORY });
+    updateLocalStorage();
   };
 };
 

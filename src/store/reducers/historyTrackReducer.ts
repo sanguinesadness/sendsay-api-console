@@ -1,3 +1,4 @@
+import { MAX_TRACK_LENGTH } from "constants/history-track";
 import {
   HistoryTrackAction,
   HistoryTrackActionTypes,
@@ -17,6 +18,10 @@ export const historyTrackReducer = (
       const filteredItems = state.items.filter(
         (i) => i.requestBody.action !== action.payload.requestBody.action,
       );
+
+      while (filteredItems.length >= MAX_TRACK_LENGTH) {
+        filteredItems.pop();
+      }
 
       return { items: [action.payload, ...filteredItems] };
     }

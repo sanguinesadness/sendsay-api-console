@@ -388,7 +388,7 @@ h4 {
 .console-screen .header__bottom .history-track,
 .console-screen .header .bottom__history-track,
 .console-screen .header .bottom .history-track {
-  min-height: 48px;
+  min-height: 49px;
 }
 
 .console-screen__header__bottom__history-track__clear-button,
