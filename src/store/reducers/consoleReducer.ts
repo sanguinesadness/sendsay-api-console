@@ -4,12 +4,14 @@ import {
   ConsoleState,
 } from "store/types/console";
 
+import { v4 } from "uuid";
+
 const initialState: ConsoleState = {
-  query: "",
-  result: "",
+  request: "",
+  response: "",
   loading: false,
-  queryError: false,
-  resultError: false,
+  requestError: false,
+  responseError: false,
 };
 
 export const consoleReducer = (
@@ -17,28 +19,37 @@ export const consoleReducer = (
   action: ConsoleAction,
 ): ConsoleState => {
   switch (action.type) {
-    case ConsoleActionTypes.SET_QUERY:
+    case ConsoleActionTypes.SET_LAST_ITEM:
       return {
         ...state,
-        query: action.payload,
-        loading: false,
-        queryError: false,
+        lastItem: {
+          id: v4(),
+          requestBody: action.payload.requestBody,
+          error: action.payload.error,
+        },
       };
-    case ConsoleActionTypes.SET_RESULT:
+    case ConsoleActionTypes.SET_REQUEST:
       return {
         ...state,
-        result: action.payload.result,
+        request: action.payload,
         loading: false,
-        resultError: action.payload.error,
+        requestError: false,
       };
-    case ConsoleActionTypes.SET_QUERY_ERROR:
-      return { ...state, queryError: action.payload, loading: false };
+    case ConsoleActionTypes.SET_RESPONSE:
+      return {
+        ...state,
+        response: action.payload.result,
+        loading: false,
+        responseError: action.payload.error,
+      };
+    case ConsoleActionTypes.SET_REQUEST_ERROR:
+      return { ...state, requestError: action.payload, loading: false };
     case ConsoleActionTypes.MAKE_REQUEST:
-      return { ...state, loading: true, result: "", resultError: false };
-    case ConsoleActionTypes.PRETTY_QUERY:
-      return { ...state, query: action.payload };
-    case ConsoleActionTypes.PRETTY_RESULT:
-      return { ...state, result: action.payload };
+      return { ...state, loading: true, response: "", responseError: false };
+    case ConsoleActionTypes.PRETTY_REQUEST:
+      return { ...state, request: action.payload };
+    case ConsoleActionTypes.PRETTY_RESPONSE:
+      return { ...state, response: action.payload };
     default:
       return state;
   }

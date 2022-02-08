@@ -1,42 +1,29 @@
 import React, { FC, useRef, useState } from "react";
 import "./styles/style.css";
-import { ReactComponent as DragIcon } from "../../../../../assets/icons/drag.svg";
+import { ReactComponent as DragIcon } from "assets/icons/drag.svg";
+import { ReactComponent as CheckIcon } from "assets/icons/check.svg";
 import classNames from "classnames";
 import Dropdown from "components/ui/Dropdown";
-import { DropdownOption } from "store/types/dropdown";
+import { DropdownOption } from "types/dropdown";
 import { v4 } from "uuid";
+import { HistoryTrackItem } from "store/types/history-track";
+import { useDispatch } from "react-redux";
+import { useTypedSelector } from "hooks/useTypedSelector";
+import { makeRequest, prettyRequest, setRequest } from "store/actions/console";
+import { prettyJSON } from "common/json-prettier";
+import { deleteHistoryTrackItem } from "store/actions/history-track";
 
-const dropdownOptions: DropdownOption[] = [
-  {
-    id: v4(),
-    text: "Выполнить",
-    color: "blue",
-    onClick: () => {
-      /* */
-    },
-  },
-  {
-    id: v4(),
-    text: "Скопировать",
-    color: "blue",
-    onClick: () => {
-      /* */
-    },
-  },
-  null,
-  {
-    id: v4(),
-    text: "Удалить",
-    color: "red",
-    onClick: () => {
-      /* */
-    },
-  },
-];
+export enum CopyStates {
+  // normal state
+  IDLE = "IDLE",
+  // state after user clicked "Скопировать"
+  COPIED = "COPIED",
+  // state after some time of floating - flying away
+  AWAY = "AWAY",
+}
 
 interface TrackItemProps {
-  action: string;
-  success: boolean;
+  item: HistoryTrackItem;
   scrollOffsetLeft: number;
   scrollOffsetTop: number;
   wrapperOffsetLeft: number;
@@ -44,48 +31,145 @@ interface TrackItemProps {
 }
 
 const TrackItem: FC<TrackItemProps> = ({
-  action,
-  success,
+  item,
   scrollOffsetLeft,
   scrollOffsetTop,
   wrapperOffsetLeft,
   wrapperOffsetTop,
 }) => {
+  const dispatch = useDispatch();
+  const historyTrackState = useTypedSelector((root) => root.historyTrack);
+
+  const [copyState, setCopyState] = useState<CopyStates>(CopyStates.IDLE);
+
   const [dropdownOpened, setDropdownOpened] = useState<boolean>(false);
   const toggleDropdown = () => setDropdownOpened((prev) => !prev);
 
-  const actionRef = useRef<HTMLDivElement>(null);
+  const itemRef = useRef<HTMLDivElement>(null);
+  const dropdownButtonRef = useRef<HTMLDivElement>(null);
 
-  const actionWidth = actionRef.current?.offsetWidth || 0;
-  const actionHeight = actionRef.current?.offsetHeight || 0;
+  const itemWidth = itemRef.current?.offsetWidth || 0;
+  const itemHeight = itemRef.current?.offsetHeight || 0;
   const offsetLeft =
-    (actionRef.current?.offsetLeft || 0) - scrollOffsetLeft + wrapperOffsetLeft;
+    (itemRef.current?.offsetLeft || 0) - scrollOffsetLeft + wrapperOffsetLeft;
   const offsetTop =
-    (actionRef.current?.offsetTop || 0) - scrollOffsetTop + wrapperOffsetTop;
+    (itemRef.current?.offsetTop || 0) - scrollOffsetTop + wrapperOffsetTop;
+
+  const switchCopyStates = () => {
+    setCopyState(CopyStates.COPIED);
+    setTimeout(() => {
+      setCopyState(CopyStates.AWAY);
+      setTimeout(() => setCopyState(CopyStates.IDLE), 500);
+    }, 2000);
+  };
+
+  const getItemQueryStr = (): string | null => {
+    const trackItem = historyTrackState.items.find((i) => i.id === item.id);
+    if (!trackItem) return null;
+
+    return JSON.stringify(trackItem.requestBody);
+  };
+
+  const handleItemClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const dropdownButton = dropdownButtonRef.current;
+
+    // if user clicked on Dropdown button
+    if (
+      dropdownButton &&
+      dropdownButton.contains(event.target as HTMLElement)
+    ) {
+      return;
+    }
+
+    const queryStr = getItemQueryStr();
+    if (!queryStr) return;
+
+    dispatch(setRequest(queryStr));
+    dispatch(prettyRequest());
+  };
+
+  const handleExecuteClick = () => {
+    const queryStr = getItemQueryStr();
+    if (!queryStr) return;
+
+    dispatch(setRequest(queryStr));
+    dispatch(prettyRequest());
+    dispatch(makeRequest(queryStr));
+  };
+
+  const handleCopyClick = () => {
+    const queryStr = getItemQueryStr();
+    if (!queryStr) return;
+
+    const prettyQuery = prettyJSON(queryStr);
+    if (prettyQuery) navigator.clipboard.writeText(prettyQuery);
+    else navigator.clipboard.writeText(queryStr);
+
+    switchCopyStates();
+  };
+
+  const handleDeleteClick = () => {
+    dispatch(deleteHistoryTrackItem(item.id));
+  };
+
+  const dropdownOptions: DropdownOption[] = [
+    {
+      id: v4(),
+      text: "Выполнить",
+      color: "blue",
+      onClick: handleExecuteClick,
+    },
+    {
+      id: v4(),
+      text: "Скопировать",
+      color: "blue",
+      onClick: handleCopyClick,
+    },
+    null,
+    {
+      id: v4(),
+      text: "Удалить",
+      color: "red",
+      onClick: handleDeleteClick,
+    },
+  ];
 
   return (
     <React.Fragment>
       <div
         className={classNames(
           "actions__action action",
-          { "actions__action--error": !success },
+          { "actions__action--error": item.error },
           {
-            "actions__action--success": success,
+            "actions__action--success": !item.error,
           },
         )}
-        ref={actionRef}>
+        ref={itemRef}
+        onClick={handleItemClick}>
         <span className="action__status" />
-        <span className="action__action-name">{action}</span>
+        <span className="action__info info">
+          <span className="info__name">{item.requestBody.action}</span>
+          <span
+            className={classNames(
+              "info__copy-state",
+              { "info__copy-state--idle": copyState === CopyStates.IDLE },
+              { "info__copy-state--copied": copyState === CopyStates.COPIED },
+              { "info__copy-state--away": copyState === CopyStates.AWAY },
+            )}>
+            {itemWidth < 150 ? <CheckIcon /> : "Скопировано"}
+          </span>
+        </span>
         <div
           className="action__dropdown-button dropdown-button"
-          onClick={toggleDropdown}>
+          onClick={toggleDropdown}
+          ref={dropdownButtonRef}>
           <DragIcon className="dropdown-button__icon" />
         </div>
       </div>
       <Dropdown
         open={dropdownOpened}
-        width={actionWidth}
-        height={actionHeight}
+        width={itemWidth}
+        height={itemHeight}
         offsetLeft={offsetLeft}
         offsetTop={offsetTop + 5}
         options={dropdownOptions}

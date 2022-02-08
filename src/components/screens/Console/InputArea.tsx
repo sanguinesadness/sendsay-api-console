@@ -2,7 +2,7 @@ import TextArea from "components/ui/TextArea";
 import { useTypedSelector } from "hooks/useTypedSelector";
 import React, { FC, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setQuery } from "store/actions/console";
+import { setRequest } from "store/actions/console";
 import "./styles/style.css";
 
 interface InputAreaProps {
@@ -14,15 +14,15 @@ const InputArea: FC<InputAreaProps> = ({ width }) => {
   const consoleState = useTypedSelector((root) => root.console);
 
   const onQueryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(setQuery(event.target.value));
+    dispatch(setRequest(event.target.value));
   };
 
   return (
     <TextArea
       className="body__textarea body__textarea--input"
       label="Запрос:"
-      error={consoleState.queryError}
-      value={consoleState.query}
+      error={consoleState.requestError}
+      value={consoleState.request}
       onChange={onQueryChange}
       width={width}
       minWidth={400}

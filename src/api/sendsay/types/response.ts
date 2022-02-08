@@ -5,5 +5,6 @@ export interface SendsayError {
 }
 
 export interface SendsaySuccess {
-  code: number;
+  "request.id": string;
+  duration: number;
 }

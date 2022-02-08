@@ -1,29 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GITHUB_LINK, GITHUB_NAME } from "constants/github";
 import { ReactComponent as AlignIcon } from "assets/icons/align.svg";
 import Button from "components/ui/Button";
 import "./styles/style.css";
 import { useDispatch } from "react-redux";
-import { makeRequest, prettyQuery } from "store/actions/console";
+import { makeRequest, prettyRequest } from "store/actions/console";
 import { useTypedSelector } from "hooks/useTypedSelector";
+import { addHistoryTrackItem } from "store/actions/history-track";
 
 const Footer = () => {
   const dispatch = useDispatch();
-  const { loading } = useTypedSelector((root) => root.console);
+  const consoleState = useTypedSelector((root) => root.console);
 
-  const handlePretty = () => dispatch(prettyQuery());
+  const handlePretty = () => dispatch(prettyRequest());
 
   const handleRequest = () => {
-    dispatch(prettyQuery());
-    dispatch(makeRequest());
+    dispatch(prettyRequest());
+    dispatch(makeRequest(consoleState.request));
   };
+
+  // add item to HistoryTrack
+  useEffect(() => {
+    if (consoleState.lastItem)
+      dispatch(addHistoryTrackItem(consoleState.lastItem));
+  }, [consoleState.lastItem]);
 
   return (
     <div className="console-screen__footer footer">
       <Button
         className="footer__send-button"
         text="Отправить"
-        loading={loading}
+        loading={consoleState.loading}
         type="default"
         onClick={handleRequest}
       />

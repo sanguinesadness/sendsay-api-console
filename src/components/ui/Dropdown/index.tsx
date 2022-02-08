@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useOutsideClicker } from "hooks/useOutsideClicker";
 import { useTypedSelector } from "hooks/useTypedSelector";
 import React, { FC, useEffect, useRef, useState } from "react";
-import { DropdownOption } from "store/types/dropdown";
+import { DropdownOption } from "types/dropdown";
 import "./styles/style.css";
 
 export interface DropdownProps {
@@ -40,8 +40,8 @@ const Dropdown: FC<DropdownProps> = ({
   useEffect(() => {
     if (!openInner || !dropdownRef.current) return;
 
-    const heightWidthOffset = dropdownRef.current.clientHeight + offsetTop;
-    const difference = windowState.height - heightWidthOffset - height;
+    const heightWithOffset = dropdownRef.current.clientHeight + offsetTop;
+    const difference = windowState.height - heightWithOffset - height;
 
     if (difference < 0) setOffsetTopInner(offsetTop + difference);
     else setOffsetTopInner(offsetTop);
@@ -50,6 +50,11 @@ const Dropdown: FC<DropdownProps> = ({
   useOutsideClicker(() => {
     setOpenInner(false);
   }, [dropdownRef]);
+
+  const handleOptionClick = (option: DropdownOption) => {
+    setOpenInner(false);
+    option?.onClick.call(null);
+  };
 
   return (
     <div
@@ -66,6 +71,7 @@ const Dropdown: FC<DropdownProps> = ({
         ) : (
           <div
             key={option.id}
+            onClick={() => handleOptionClick(option)}
             className={classNames(
               "dropdown__option",
               "option",
