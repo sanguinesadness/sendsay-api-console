@@ -1,0 +1,41 @@
+@import "../../../../styles/style.scss";
+
+.dropdown {
+  position: fixed;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0px 1px 4px rgba(#000, 0.25);
+  display: none;
+  flex-direction: column;
+  z-index: 50;
+  font-size: 0.95em;
+  padding: 4px 0;
+
+  &--opened {
+    display: block;
+  }
+
+  &__option,
+  .option {
+    padding: 10px 12px;
+    cursor: pointer;
+
+    &--blue:hover {
+      color: #fff;
+      background: $blue;
+    }
+
+    &--red:hover {
+      color: #fff;
+      background: $red;
+    }
+  }
+
+  &__separator {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 4px 0;
+    background: rgba(#000, 0.2);
+  }
+}

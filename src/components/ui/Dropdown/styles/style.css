@@ -224,80 +224,49 @@ h4 {
   height: 100vh;
 }
 
-.login-screen {
-  width: 100%;
-  height: 100%;
-}
-
-.login-screen__content,
-.login-screen .content {
-  width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.dropdown {
+  position: fixed;
+  background: #fff;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  z-index: 50;
+  font-size: 0.95em;
+  padding: 4px 0;
 }
 
-.login-screen__content__form,
-.login-screen__content .form,
-.login-screen .content__form,
-.login-screen .content .form {
-  margin: 20px 0;
-  width: 35vw;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 40px 30px;
-  background: #fff;
+.dropdown--opened {
+  display: block;
 }
 
-.login-screen__content__form__title,
-.login-screen__content__form .title,
-.login-screen__content .form__title,
-.login-screen__content .form .title,
-.login-screen .content__form__title,
-.login-screen .content__form .title,
-.login-screen .content .form__title,
-.login-screen .content .form .title {
-  margin-bottom: 20px;
+.dropdown__option,
+.dropdown .option {
+  padding: 10px 12px;
+  cursor: pointer;
 }
 
-.login-screen__content__form__fields__field,
-.login-screen__content__form .fields__field,
-.login-screen__content .form__fields__field,
-.login-screen__content .form .fields__field,
-.login-screen .content__form__fields__field,
-.login-screen .content__form .fields__field,
-.login-screen .content .form__fields__field,
-.login-screen .content .form .fields__field {
-  margin-bottom: 15px;
+.dropdown__option--blue:hover,
+.dropdown .option--blue:hover {
+  color: #fff;
+  background: #0055fb;
 }
 
-.login-screen__content__form__buttons,
-.login-screen__content__form .buttons,
-.login-screen__content .form__buttons,
-.login-screen__content .form .buttons,
-.login-screen .content__form__buttons,
-.login-screen .content__form .buttons,
-.login-screen .content .form__buttons,
-.login-screen .content .form .buttons {
-  margin-top: 20px;
+.dropdown__option--red:hover,
+.dropdown .option--red:hover {
+  color: #fff;
+  background: #cf2c00;
 }
 
-.login-screen__content__form .error-label,
-.login-screen__content .form .error-label,
-.login-screen .content__form .error-label,
-.login-screen .content .form .error-label {
-  margin-bottom: 20px;
+.dropdown__separator {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 4px 0;
+  background: rgba(0, 0, 0, 0.2);
 }
 /*# sourceMappingURL=style.css.map */

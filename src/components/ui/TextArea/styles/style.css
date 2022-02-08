@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap");
 *,
 *::after,
 *::before {
@@ -239,11 +240,11 @@ h4 {
 }
 
 .textarea--error .textarea__label {
-  color: #CF2C00;
+  color: #cf2c00;
 }
 
 .textarea--error .textarea__inner {
-  border-color: #CF2C00;
+  border-color: #cf2c00;
   -webkit-box-shadow: 0 0 5px rgba(207, 44, 0, 0.5);
           box-shadow: 0 0 5px rgba(207, 44, 0, 0.5);
 }

@@ -90,14 +90,17 @@
   }
 
   &__icon {
-    fill: var(--color);
-    stroke: var(--color);
     height: 1.4em;
     width: 1.4em;
 
-    & * {
+    svg {
+      height: 100%;
+      width: 100%;
       fill: var(--color);
-      stroke: var(--color);
+
+      & * {
+        stroke: var(--color);
+      }
     }
   }
 

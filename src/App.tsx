@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import { updateWindowSize } from "store/actions/window";
 import Console from "./components/screens/Console";
 import Login from "./components/screens/Login";
 import { useTypedSelector } from "./hooks/useTypedSelector";
@@ -14,6 +15,11 @@ function App() {
 
   useEffect(() => {
     dispatch(checkAuth());
+
+    const handleResize = () => dispatch(updateWindowSize());
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -26,6 +32,7 @@ function App() {
   return (
     <div id="app">
       <Routes>
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/console" element={<Console />} />
       </Routes>

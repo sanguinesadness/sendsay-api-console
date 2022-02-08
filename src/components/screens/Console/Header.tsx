@@ -1,16 +1,35 @@
-import React from "react";
+import React, { FC } from "react";
 import { useDispatch } from "react-redux";
 import { ReactComponent as LogoIcon } from "assets/icons/logo.svg";
 import { ReactComponent as LogoutIcon } from "assets/icons/logout.svg";
 import { ReactComponent as MaximizeIcon } from "assets/icons/maximize.svg";
+import { ReactComponent as MinimizeIcon } from "assets/icons/minimize.svg";
 import { useTypedSelector } from "hooks/useTypedSelector";
 import Button from "components/ui/Button";
 import "./styles/style.css";
 import HistoryTrack from "./components/HistoryTrack";
+import { logout } from "store/actions/auth";
+import { useNavigate } from "react-router-dom";
+import { FullScreenHandle } from "react-full-screen";
 
-const Header = () => {
+interface HeaderProps {
+  fullScreenHandle: FullScreenHandle;
+}
+
+const Header: FC<HeaderProps> = ({ fullScreenHandle }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const authState = useTypedSelector((root) => root.auth);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
+
+  const toggleFullscreen = () => {
+    if (fullScreenHandle.active) fullScreenHandle.exit();
+    else fullScreenHandle.enter();
+  };
 
   return (
     <div className="console-screen__header header">
@@ -34,6 +53,7 @@ const Header = () => {
           </div>
           <Button
             className="account_logout-button"
+            onClick={handleLogout}
             icon={LogoutIcon}
             type="no-bg"
             text="Выйти"
@@ -42,7 +62,8 @@ const Header = () => {
         </div>
         <Button
           className="top__maximize-button"
-          icon={MaximizeIcon}
+          onClick={toggleFullscreen}
+          icon={fullScreenHandle.active ? MinimizeIcon : MaximizeIcon}
           type="no-bg"
         />
       </div>

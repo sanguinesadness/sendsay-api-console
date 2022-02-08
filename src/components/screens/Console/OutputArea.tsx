@@ -27,7 +27,7 @@ const OutputArea: FC<OutputAreaProps> = ({ width }) => {
       value={result}
       width={width}
       readOnly
-      minWidth={100}
+      minWidth={400}
     />
   );
 };

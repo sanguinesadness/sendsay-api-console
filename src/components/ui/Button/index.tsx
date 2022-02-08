@@ -43,7 +43,11 @@ const Button: FC<ButtonProps> = ({
         { "button--icon-right": iconPlace === "right" },
       )}
       onClick={onButtonClick}>
-      {Icon && <Icon className="button__icon" />}
+      {Icon && (
+        <span className="button__icon">
+          <Icon />
+        </span>
+      )}
       {text && <span className="button__text">{text}</span>}
       {loading && <LoadingIcon className="button__loading-spinner" />}
     </button>

@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import Button from "../../../../ui/Button";
 import { ReactComponent as CloseIcon } from "../../../../../assets/icons/close.svg";
 import TrackItem from "./TrackItem";
@@ -30,12 +30,21 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
   const [leftFadeVisible, setLeftFadeVisible] = useState<boolean>(false);
   const [rightFadeVisible, setRightFadeVisible] = useState<boolean>(true);
 
-  const onScroll = (event: React.UIEvent<HTMLDivElement, UIEvent>) => {
+  const [scrollOffsetX, setScrollOffsetX] = useState<number>(0);
+  const [scrollOffsetY, setScrollOffsetY] = useState<number>(0);
+
+  const actionsRef = useRef<HTMLDivElement>(null);
+
+  const handleActionsScroll = (
+    event: React.UIEvent<HTMLDivElement, UIEvent>,
+  ) => {
     const scrollRight =
       event.currentTarget.scrollWidth -
       event.currentTarget.scrollLeft -
       event.currentTarget.clientWidth;
     const scrollLeft = event.currentTarget.scrollLeft;
+
+    setScrollOffsetX(scrollLeft);
 
     if (scrollLeft > 0) setLeftFadeVisible(true);
     else setLeftFadeVisible(false);
@@ -44,16 +53,33 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
     else setRightFadeVisible(false);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollOffsetY(document.scrollingElement?.scrollTop || 0);
+    };
+
+    document.addEventListener("scroll", handleScroll);
+
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className={classNames("history-track", className)}>
       <div
         className="history-track__actions actions"
-        onScroll={onScroll}>
+        onScroll={handleActionsScroll}
+        ref={actionsRef}>
         {actions.map((action, i) => (
           <TrackItem
-            key={i}
+            key={action + i}
             action={action}
-            success={Boolean((Math.floor(Math.random() * 10)) % 2)}
+            success={false}
+            scrollOffsetLeft={scrollOffsetX}
+            scrollOffsetTop={scrollOffsetY}
+            wrapperOffsetLeft={actionsRef.current?.offsetLeft || 0}
+            wrapperOffsetTop={actionsRef.current?.offsetTop || 0}
           />
         ))}
         <div
