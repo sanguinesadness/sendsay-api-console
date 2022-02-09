@@ -315,7 +315,6 @@ h4 {
   cursor: pointer;
   -webkit-transition: 200ms ease all;
   transition: 200ms ease all;
-  overflow: hidden;
 }
 
 .history-track__actions__action:hover,
@@ -347,19 +346,21 @@ h4 {
   display: block;
   width: 10px;
   height: 10px;
+  min-height: 10px;
+  min-width: 10px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   margin-left: 5px;
 }
 
 .history-track__actions__action__info,
-.history-track__actions__action .action__info,
+.history-track__actions__action .info,
 .history-track__actions .action__info,
-.history-track__actions .action .action__info,
+.history-track__actions .action .info,
 .history-track .actions__action__info,
-.history-track .actions__action .action__info,
+.history-track .actions__action .info,
 .history-track .actions .action__info,
-.history-track .actions .action .action__info {
+.history-track .actions .action .info {
   margin-left: 10px;
   margin-right: 5px;
   position: relative;
@@ -379,32 +380,32 @@ h4 {
 }
 
 .history-track__actions__action__info__name,
-.history-track__actions__action .action__info__name,
+.history-track__actions__action .info__name,
 .history-track__actions .action__info__name,
-.history-track__actions .action .action__info__name,
+.history-track__actions .action .info__name,
 .history-track .actions__action__info__name,
-.history-track .actions__action .action__info__name,
+.history-track .actions__action .info__name,
 .history-track .actions .action__info__name,
-.history-track .actions .action .action__info__name {
+.history-track .actions .action .info__name {
   white-space: nowrap;
 }
 
 .history-track__actions__action__info__copy-state,
 .history-track__actions__action__info .info__copy-state,
-.history-track__actions__action .action__info__copy-state,
-.history-track__actions__action .action__info .info__copy-state,
+.history-track__actions__action .info__copy-state,
+.history-track__actions__action .info .info__copy-state,
 .history-track__actions .action__info__copy-state,
 .history-track__actions .action__info .info__copy-state,
-.history-track__actions .action .action__info__copy-state,
-.history-track__actions .action .action__info .info__copy-state,
+.history-track__actions .action .info__copy-state,
+.history-track__actions .action .info .info__copy-state,
 .history-track .actions__action__info__copy-state,
 .history-track .actions__action__info .info__copy-state,
-.history-track .actions__action .action__info__copy-state,
-.history-track .actions__action .action__info .info__copy-state,
+.history-track .actions__action .info__copy-state,
+.history-track .actions__action .info .info__copy-state,
 .history-track .actions .action__info__copy-state,
 .history-track .actions .action__info .info__copy-state,
-.history-track .actions .action .action__info__copy-state,
-.history-track .actions .action .action__info .info__copy-state {
+.history-track .actions .action .info__copy-state,
+.history-track .actions .action .info .info__copy-state {
   position: absolute;
   left: 0;
   height: 110%;
@@ -429,59 +430,59 @@ h4 {
 
 .history-track__actions__action__info__copy-state svg,
 .history-track__actions__action__info .info__copy-state svg,
-.history-track__actions__action .action__info__copy-state svg,
-.history-track__actions__action .action__info .info__copy-state svg,
+.history-track__actions__action .info__copy-state svg,
+.history-track__actions__action .info .info__copy-state svg,
 .history-track__actions .action__info__copy-state svg,
 .history-track__actions .action__info .info__copy-state svg,
-.history-track__actions .action .action__info__copy-state svg,
-.history-track__actions .action .action__info .info__copy-state svg,
+.history-track__actions .action .info__copy-state svg,
+.history-track__actions .action .info .info__copy-state svg,
 .history-track .actions__action__info__copy-state svg,
 .history-track .actions__action__info .info__copy-state svg,
-.history-track .actions__action .action__info__copy-state svg,
-.history-track .actions__action .action__info .info__copy-state svg,
+.history-track .actions__action .info__copy-state svg,
+.history-track .actions__action .info .info__copy-state svg,
 .history-track .actions .action__info__copy-state svg,
 .history-track .actions .action__info .info__copy-state svg,
-.history-track .actions .action .action__info__copy-state svg,
-.history-track .actions .action .action__info .info__copy-state svg {
+.history-track .actions .action .info__copy-state svg,
+.history-track .actions .action .info .info__copy-state svg {
   height: 1.3em;
   width: 1.3em;
 }
 
 .history-track__actions__action__info__copy-state svg > *,
 .history-track__actions__action__info .info__copy-state svg > *,
-.history-track__actions__action .action__info__copy-state svg > *,
-.history-track__actions__action .action__info .info__copy-state svg > *,
+.history-track__actions__action .info__copy-state svg > *,
+.history-track__actions__action .info .info__copy-state svg > *,
 .history-track__actions .action__info__copy-state svg > *,
 .history-track__actions .action__info .info__copy-state svg > *,
-.history-track__actions .action .action__info__copy-state svg > *,
-.history-track__actions .action .action__info .info__copy-state svg > *,
+.history-track__actions .action .info__copy-state svg > *,
+.history-track__actions .action .info .info__copy-state svg > *,
 .history-track .actions__action__info__copy-state svg > *,
 .history-track .actions__action__info .info__copy-state svg > *,
-.history-track .actions__action .action__info__copy-state svg > *,
-.history-track .actions__action .action__info .info__copy-state svg > *,
+.history-track .actions__action .info__copy-state svg > *,
+.history-track .actions__action .info .info__copy-state svg > *,
 .history-track .actions .action__info__copy-state svg > *,
 .history-track .actions .action__info .info__copy-state svg > *,
-.history-track .actions .action .action__info__copy-state svg > *,
-.history-track .actions .action .action__info .info__copy-state svg > * {
+.history-track .actions .action .info__copy-state svg > *,
+.history-track .actions .action .info .info__copy-state svg > * {
   stroke: #30b800;
 }
 
 .history-track__actions__action__info__copy-state--idle,
 .history-track__actions__action__info .info__copy-state--idle,
-.history-track__actions__action .action__info__copy-state--idle,
-.history-track__actions__action .action__info .info__copy-state--idle,
+.history-track__actions__action .info__copy-state--idle,
+.history-track__actions__action .info .info__copy-state--idle,
 .history-track__actions .action__info__copy-state--idle,
 .history-track__actions .action__info .info__copy-state--idle,
-.history-track__actions .action .action__info__copy-state--idle,
-.history-track__actions .action .action__info .info__copy-state--idle,
+.history-track__actions .action .info__copy-state--idle,
+.history-track__actions .action .info .info__copy-state--idle,
 .history-track .actions__action__info__copy-state--idle,
 .history-track .actions__action__info .info__copy-state--idle,
-.history-track .actions__action .action__info__copy-state--idle,
-.history-track .actions__action .action__info .info__copy-state--idle,
+.history-track .actions__action .info__copy-state--idle,
+.history-track .actions__action .info .info__copy-state--idle,
 .history-track .actions .action__info__copy-state--idle,
 .history-track .actions .action__info .info__copy-state--idle,
-.history-track .actions .action .action__info__copy-state--idle,
-.history-track .actions .action .action__info .info__copy-state--idle {
+.history-track .actions .action .info__copy-state--idle,
+.history-track .actions .action .info .info__copy-state--idle {
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
   visibility: hidden;
@@ -490,20 +491,20 @@ h4 {
 
 .history-track__actions__action__info__copy-state--copied,
 .history-track__actions__action__info .info__copy-state--copied,
-.history-track__actions__action .action__info__copy-state--copied,
-.history-track__actions__action .action__info .info__copy-state--copied,
+.history-track__actions__action .info__copy-state--copied,
+.history-track__actions__action .info .info__copy-state--copied,
 .history-track__actions .action__info__copy-state--copied,
 .history-track__actions .action__info .info__copy-state--copied,
-.history-track__actions .action .action__info__copy-state--copied,
-.history-track__actions .action .action__info .info__copy-state--copied,
+.history-track__actions .action .info__copy-state--copied,
+.history-track__actions .action .info .info__copy-state--copied,
 .history-track .actions__action__info__copy-state--copied,
 .history-track .actions__action__info .info__copy-state--copied,
-.history-track .actions__action .action__info__copy-state--copied,
-.history-track .actions__action .action__info .info__copy-state--copied,
+.history-track .actions__action .info__copy-state--copied,
+.history-track .actions__action .info .info__copy-state--copied,
 .history-track .actions .action__info__copy-state--copied,
 .history-track .actions .action__info .info__copy-state--copied,
-.history-track .actions .action .action__info__copy-state--copied,
-.history-track .actions .action .action__info .info__copy-state--copied {
+.history-track .actions .action .info__copy-state--copied,
+.history-track .actions .action .info .info__copy-state--copied {
   -webkit-transform: translateY(0);
           transform: translateY(0);
   visibility: visible;
@@ -512,20 +513,20 @@ h4 {
 
 .history-track__actions__action__info__copy-state--away,
 .history-track__actions__action__info .info__copy-state--away,
-.history-track__actions__action .action__info__copy-state--away,
-.history-track__actions__action .action__info .info__copy-state--away,
+.history-track__actions__action .info__copy-state--away,
+.history-track__actions__action .info .info__copy-state--away,
 .history-track__actions .action__info__copy-state--away,
 .history-track__actions .action__info .info__copy-state--away,
-.history-track__actions .action .action__info__copy-state--away,
-.history-track__actions .action .action__info .info__copy-state--away,
+.history-track__actions .action .info__copy-state--away,
+.history-track__actions .action .info .info__copy-state--away,
 .history-track .actions__action__info__copy-state--away,
 .history-track .actions__action__info .info__copy-state--away,
-.history-track .actions__action .action__info__copy-state--away,
-.history-track .actions__action .action__info .info__copy-state--away,
+.history-track .actions__action .info__copy-state--away,
+.history-track .actions__action .info .info__copy-state--away,
 .history-track .actions .action__info__copy-state--away,
 .history-track .actions .action__info .info__copy-state--away,
-.history-track .actions .action .action__info__copy-state--away,
-.history-track .actions .action .action__info .info__copy-state--away {
+.history-track .actions .action .info__copy-state--away,
+.history-track .actions .action .info .info__copy-state--away {
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
   opacity: 0;

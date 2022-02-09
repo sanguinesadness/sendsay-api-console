@@ -215,23 +215,3 @@ h4 {
   width: 100vw;
   height: 100vh;
 }
-
-.page-loading {
-  width: 100vw;
-  height: 100vh;
-  @include flex-centered();
-
-  &__icon {
-    stroke: $dark;
-    fill: $dark;
-
-    & * {
-      stroke: $dark;
-      fill: $dark;
-    }
-
-    height: 5em;
-    width: 5em;
-    animation: rotating 5s linear infinite;
-  }
-}

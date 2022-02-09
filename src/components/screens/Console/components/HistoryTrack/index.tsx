@@ -19,21 +19,17 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
   const dispatch = useDispatch();
 
   const [leftFadeVisible, setLeftFadeVisible] = useState<boolean>(false);
-  const [rightFadeVisible, setRightFadeVisible] = useState<boolean>(true);
+  const [rightFadeVisible, setRightFadeVisible] = useState<boolean>(false);
 
   const [scrollOffsetX, setScrollOffsetX] = useState<number>(0);
   const [scrollOffsetY, setScrollOffsetY] = useState<number>(0);
 
   const actionsRef = useRef<HTMLDivElement>(null);
 
-  const handleActionsScroll = (
-    event: React.UIEvent<HTMLDivElement, UIEvent>,
-  ) => {
+  const updateSideFades = (element: HTMLElement) => {
     const scrollRight =
-      event.currentTarget.scrollWidth -
-      event.currentTarget.scrollLeft -
-      event.currentTarget.clientWidth;
-    const scrollLeft = event.currentTarget.scrollLeft;
+      element.scrollWidth - element.scrollLeft - element.clientWidth;
+    const scrollLeft = element.scrollLeft;
 
     setScrollOffsetX(scrollLeft);
 
@@ -42,6 +38,12 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
 
     if (scrollRight > 0) setRightFadeVisible(true);
     else setRightFadeVisible(false);
+  };
+
+  const handleActionsScroll = (
+    event: React.UIEvent<HTMLDivElement, UIEvent>,
+  ) => {
+    updateSideFades(event.currentTarget);
   };
 
   const handleClearClick = () => {
@@ -61,6 +63,11 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
       document.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (!actionsRef.current) return;
+    updateSideFades(actionsRef.current);
+  }, [items.length]);
 
   return (
     <div className={classNames("history-track", className)}>
@@ -85,13 +92,15 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
         <div
           className={classNames("actions__fade", "actions__fade--left", {
             "actions__fade--visible": leftFadeVisible,
-          })}>
+          })}
+          style={{ top: -scrollOffsetY }}>
           <div />
         </div>
         <div
           className={classNames("actions__fade", "actions__fade--right", {
             "actions__fade--visible": rightFadeVisible,
-          })}>
+          })}
+          style={{ top: -scrollOffsetY }}>
           <div />
         </div>
       </div>

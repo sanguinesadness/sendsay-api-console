@@ -68,7 +68,6 @@
       padding: 5px;
       cursor: pointer;
       transition: 200ms ease all;
-      overflow: hidden;
 
       &:hover {
         box-shadow: 0 1px 4px rgba(#000, 0.25);
@@ -86,13 +85,15 @@
         display: block;
         width: 10px;
         height: 10px;
+        min-height: 10px;
+        min-width: 10px;
         border-radius: 50%;
         border: 1px solid rgba(#000, 0.2);
         margin-left: 5px;
       }
 
       &__info,
-      .action__info {
+      .info {
         margin-left: 10px;
         margin-right: 5px;
         position: relative;
