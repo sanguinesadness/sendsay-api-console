@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/sendsay-api-console/static/css/main.5f466fad.css",
+    "main.js": "/sendsay-api-console/static/js/main.3817bdc6.js",
+    "static/media/loading.svg": "/sendsay-api-console/static/media/loading.22aedee0c52edeaaea6c9868cba9005a.svg",
+    "index.html": "/sendsay-api-console/index.html",
+    "static/media/meh.svg": "/sendsay-api-console/static/media/meh.fd110885678512a9c911cbde0aa3ac13.svg",
+    "static/media/logout.svg": "/sendsay-api-console/static/media/logout.b9c1a1158f4b6f5b213cb605fe948119.svg",
+    "static/media/maximize.svg": "/sendsay-api-console/static/media/maximize.16dbdc50f2d4ebe1470eee6e3422e0d1.svg",
+    "static/media/minimize.svg": "/sendsay-api-console/static/media/minimize.f683c56b66f6a6ca351c11cc3993e83e.svg",
+    "static/media/align.svg": "/sendsay-api-console/static/media/align.f47e6d347a05b60fcf97b9dbcdd145fd.svg",
+    "static/media/logo.svg": "/sendsay-api-console/static/media/logo.3056aa5495f0f3f0c656ac2c6e331061.svg",
+    "static/media/drag.svg": "/sendsay-api-console/static/media/drag.7089713be1900c55fc3cfa0f2398941f.svg",
+    "static/media/close.svg": "/sendsay-api-console/static/media/close.44ea9dad5c737f6b0f39dff4cd664091.svg",
+    "static/media/check.svg": "/sendsay-api-console/static/media/check.bea653d0c692676bd06ebaba24583547.svg",
+    "main.5f466fad.css.map": "/sendsay-api-console/static/css/main.5f466fad.css.map",
+    "main.3817bdc6.js.map": "/sendsay-api-console/static/js/main.3817bdc6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5f466fad.css",
+    "static/js/main.3817bdc6.js"
+  ]
+}
