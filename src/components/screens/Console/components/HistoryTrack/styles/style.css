@@ -224,6 +224,12 @@ h4 {
   height: 100vh;
 }
 
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 14px;
+  }
+}
+
 .history-track {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -407,9 +413,9 @@ h4 {
 .history-track .actions .action .info__copy-state,
 .history-track .actions .action .info .info__copy-state {
   position: absolute;
-  left: 0;
+  left: -5%;
   height: 110%;
-  width: 100%;
+  width: 110%;
   -webkit-transition: 500ms ease all;
   transition: 500ms ease all;
   pointer-events: all;

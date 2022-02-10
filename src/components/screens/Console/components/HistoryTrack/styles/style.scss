@@ -106,9 +106,9 @@
         &__copy-state,
         .info__copy-state {
           position: absolute;
-          left: 0;
+          left: -5%;
           height: 110%;
-          width: 100%;
+          width: 110%;
           transition: 500ms ease all;
           pointer-events: all;
           background: $light-gray;

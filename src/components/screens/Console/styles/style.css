@@ -513,7 +513,7 @@ h4 {
   z-index: 2;
 }
 
-.page-loading {
+.screen-loading {
   width: 100vw;
   height: 100vh;
   display: -webkit-box;
@@ -531,7 +531,7 @@ h4 {
           justify-content: center;
 }
 
-.page-loading__icon {
+.screen-loading__icon {
   stroke: #0d0d0d;
   fill: #0d0d0d;
   height: 5em;
@@ -540,8 +540,137 @@ h4 {
           animation: rotating 5s linear infinite;
 }
 
-.page-loading__icon * {
+.screen-loading__icon * {
   stroke: #0d0d0d;
   fill: #0d0d0d;
+}
+
+@media screen and (max-width: 950px) {
+  .console-screen__header__top__screen-info__title,
+  .console-screen__header__top .screen-info__title,
+  .console-screen__header .top__screen-info__title,
+  .console-screen__header .top .screen-info__title,
+  .console-screen .header__top__screen-info__title,
+  .console-screen .header__top .screen-info__title,
+  .console-screen .header .top__screen-info__title,
+  .console-screen .header .top .screen-info__title {
+    display: none;
+  }
+  .console-screen__header__top__account__credentials,
+  .console-screen__header__top__account .credentials,
+  .console-screen__header__top .account__credentials,
+  .console-screen__header__top .account .credentials,
+  .console-screen__header .top__account__credentials,
+  .console-screen__header .top__account .credentials,
+  .console-screen__header .top .account__credentials,
+  .console-screen__header .top .account .credentials,
+  .console-screen .header__top__account__credentials,
+  .console-screen .header__top__account .credentials,
+  .console-screen .header__top .account__credentials,
+  .console-screen .header__top .account .credentials,
+  .console-screen .header .top__account__credentials,
+  .console-screen .header .top__account .credentials,
+  .console-screen .header .top .account__credentials,
+  .console-screen .header .top .account .credentials {
+    margin: 0;
+  }
+  .console-screen__header__top__account__logout-button,
+  .console-screen__header__top .account__logout-button,
+  .console-screen__header .top__account__logout-button,
+  .console-screen__header .top .account__logout-button,
+  .console-screen .header__top__account__logout-button,
+  .console-screen .header__top .account__logout-button,
+  .console-screen .header .top__account__logout-button,
+  .console-screen .header .top .account__logout-button {
+    padding: 5px 15px;
+  }
+  .console-screen__header__top__maximize-button,
+  .console-screen__header .top__maximize-button,
+  .console-screen .header__top__maximize-button,
+  .console-screen .header .top__maximize-button {
+    display: none;
+  }
+  .console-screen__body__textarea,
+  .console-screen__body .textarea,
+  .console-screen .body__textarea,
+  .console-screen .body .textarea {
+    margin-right: 15px;
+  }
+  .console-screen__body__textarea:last-child,
+  .console-screen__body .textarea:last-child,
+  .console-screen .body__textarea:last-child,
+  .console-screen .body .textarea:last-child {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .console-screen__header__top__screen-info__logo,
+  .console-screen__header__top .screen-info__logo,
+  .console-screen__header .top__screen-info__logo,
+  .console-screen__header .top .screen-info__logo,
+  .console-screen .header__top__screen-info__logo,
+  .console-screen .header__top .screen-info__logo,
+  .console-screen .header .top__screen-info__logo,
+  .console-screen .header .top .screen-info__logo {
+    display: none;
+  }
+  .console-screen__header__top__account,
+  .console-screen__header__top .account,
+  .console-screen__header .top__account,
+  .console-screen__header .top .account,
+  .console-screen .header__top__account,
+  .console-screen .header__top .account,
+  .console-screen .header .top__account,
+  .console-screen .header .top .account {
+    margin-left: 0;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 100%;
+  }
+  .console-screen__footer__link,
+  .console-screen .footer__link {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .console-screen__body,
+  .console-screen .body {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+    padding: 10px 15px;
+  }
+  .console-screen__body__textarea,
+  .console-screen__body .textarea,
+  .console-screen .body__textarea,
+  .console-screen .body .textarea {
+    width: 100%;
+    height: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .console-screen__body__textarea:last-child,
+  .console-screen__body .textarea:last-child,
+  .console-screen .body__textarea:last-child,
+  .console-screen .body .textarea:last-child {
+    margin-bottom: 0;
+  }
+  .console-screen__body__textarea__inner,
+  .console-screen__body .textarea__inner,
+  .console-screen .body__textarea__inner,
+  .console-screen .body .textarea__inner {
+    width: 100%;
+    min-height: 300px;
+    height: 300px;
+  }
+  .console-screen__footer,
+  .console-screen .footer {
+    padding: 10px 0;
+  }
 }
 /*# sourceMappingURL=style.css.map */

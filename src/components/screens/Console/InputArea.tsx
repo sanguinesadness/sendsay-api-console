@@ -7,9 +7,10 @@ import "./styles/style.css";
 
 interface InputAreaProps {
   width: number;
+  minWidth: number;
 }
 
-const InputArea: FC<InputAreaProps> = ({ width }) => {
+const InputArea: FC<InputAreaProps> = ({ width, minWidth }) => {
   const dispatch = useDispatch();
   const consoleState = useTypedSelector((root) => root.console);
 
@@ -25,7 +26,7 @@ const InputArea: FC<InputAreaProps> = ({ width }) => {
       value={consoleState.request}
       onChange={onQueryChange}
       width={width}
-      minWidth={400}
+      minWidth={minWidth}
     />
   );
 };

@@ -34,7 +34,10 @@ const TextArea: FC<TextAreaProps> = ({
       className={classNames("textarea", className, {
         "textarea--error": error,
       })}
-      style={{ width, minWidth }}>
+      style={{
+        width: width ? width : "",
+        minWidth: minWidth ? minWidth : "",
+      }}>
       {label && <span className="textarea__label">{label}</span>}
       <textarea
         name={name}

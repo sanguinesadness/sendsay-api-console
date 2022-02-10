@@ -9,11 +9,14 @@ import "./styles/style.css";
 
 interface OutputAreaProps {
   width: number;
+  minWidth: number;
 }
 
-const OutputArea: FC<OutputAreaProps> = ({ width }) => {
+const OutputArea: FC<OutputAreaProps> = ({ width, minWidth }) => {
   const dispatch = useDispatch();
-  const { response: result, responseError: resultError } = useTypedSelector((root) => root.console);
+  const { response: result, responseError: resultError } = useTypedSelector(
+    (root) => root.console,
+  );
 
   useEffect(() => {
     dispatch(prettyResponse());
@@ -27,7 +30,7 @@ const OutputArea: FC<OutputAreaProps> = ({ width }) => {
       value={result}
       width={width}
       readOnly
-      minWidth={400}
+      minWidth={minWidth}
     />
   );
 };

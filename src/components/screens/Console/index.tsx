@@ -13,8 +13,8 @@ const Console = () => {
 
   if (authState.loading) {
     return (
-      <div className="page-loading">
-        <LoadingIcon className="page-loading__icon" />
+      <div className="screen-loading">
+        <LoadingIcon className="screen-loading__icon" />
       </div>
     );
   }

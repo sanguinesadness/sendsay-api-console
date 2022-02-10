@@ -19,7 +19,11 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ fullScreenHandle }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const authState = useTypedSelector((root) => root.auth);
+  const windowState = useTypedSelector((root) => root.window);
+
+  const less950px = windowState.width < 950;
 
   const handleLogout = () => {
     dispatch(logout());
@@ -52,11 +56,11 @@ const Header: FC<HeaderProps> = ({ fullScreenHandle }) => {
             )}
           </div>
           <Button
-            className="account_logout-button"
+            className="account__logout-button"
             onClick={handleLogout}
             icon={LogoutIcon}
             type="no-bg"
-            text="Выйти"
+            text={less950px ? "" : "Выйти"}
             iconPlace="right"
           />
         </div>
