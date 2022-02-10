@@ -6,7 +6,7 @@ import { DropdownOption } from "types/dropdown";
 import "./styles/style.css";
 
 export interface DropdownProps {
-  open: boolean;
+  opened: boolean;
   options: DropdownOption[];
   width: number;
   height: number;
@@ -15,14 +15,14 @@ export interface DropdownProps {
 }
 
 const Dropdown: FC<DropdownProps> = ({
-  open,
+  opened,
   options,
   width,
   height,
   offsetTop,
   offsetLeft,
 }) => {
-  const [openInner, setOpenInner] = useState<boolean>(open);
+  const [openedInner, setOpenedInner] = useState<boolean>(opened);
   const [offsetTopInner, setOffsetTopInner] = useState<number>(offsetTop);
 
   const windowState = useTypedSelector((root) => root.window);
@@ -34,31 +34,31 @@ const Dropdown: FC<DropdownProps> = ({
   }, [offsetTop]);
 
   useEffect(() => {
-    setOpenInner(open);
-  }, [open]);
+    setOpenedInner(opened);
+  }, [opened]);
 
   useEffect(() => {
-    if (!openInner || !dropdownRef.current) return;
+    if (!openedInner || !dropdownRef.current) return;
 
     const heightWithOffset = dropdownRef.current.clientHeight + offsetTop;
     const difference = windowState.height - heightWithOffset - height;
 
     if (difference < 0) setOffsetTopInner(offsetTop + difference);
     else setOffsetTopInner(offsetTop);
-  }, [windowState.height, openInner]);
+  }, [windowState.height, openedInner]);
 
   useOutsideClicker(() => {
-    setOpenInner(false);
+    setOpenedInner(false);
   }, [dropdownRef]);
 
   const handleOptionClick = (option: DropdownOption) => {
-    setOpenInner(false);
+    setOpenedInner(false);
     option?.onClick.call(null);
   };
 
   return (
     <div
-      className={classNames("dropdown", { "dropdown--opened": openInner })}
+      className={classNames("dropdown", { "dropdown--opened": openedInner })}
       ref={dropdownRef}
       style={{
         minWidth: width,

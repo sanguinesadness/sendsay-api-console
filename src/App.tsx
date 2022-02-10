@@ -1,3 +1,4 @@
+import BurgerMenu from "components/ui/BurgerMenu";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -11,7 +12,11 @@ import "./styles/style.css";
 function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const authState = useTypedSelector((root) => root.auth);
+  const windowState = useTypedSelector((root) => root.window);
+
+  const less550px = windowState.width < 550;
 
   useEffect(() => {
     dispatch(checkAuth());
@@ -31,6 +36,8 @@ function App() {
 
   return (
     <div id="app">
+      {less550px && <BurgerMenu/>}
+
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />

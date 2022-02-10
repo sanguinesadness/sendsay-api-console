@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ReactComponent as LogoIcon } from "assets/icons/logo.svg";
 import { ReactComponent as LogoutIcon } from "assets/icons/logout.svg";
@@ -11,6 +11,7 @@ import HistoryTrack from "./components/HistoryTrack";
 import { logout } from "store/actions/auth";
 import { useNavigate } from "react-router-dom";
 import { FullScreenHandle } from "react-full-screen";
+import BurgerButton from "./components/BurgerButton";
 
 interface HeaderProps {
   fullScreenHandle: FullScreenHandle;
@@ -24,6 +25,7 @@ const Header: FC<HeaderProps> = ({ fullScreenHandle }) => {
   const windowState = useTypedSelector((root) => root.window);
 
   const less950px = windowState.width < 950;
+  const less550px = windowState.width < 550;
 
   const handleLogout = () => {
     dispatch(logout());
@@ -55,14 +57,18 @@ const Header: FC<HeaderProps> = ({ fullScreenHandle }) => {
               </span>
             )}
           </div>
-          <Button
-            className="account__logout-button"
-            onClick={handleLogout}
-            icon={LogoutIcon}
-            type="no-bg"
-            text={less950px ? "" : "Выйти"}
-            iconPlace="right"
-          />
+          {less550px ? (
+            <BurgerButton />
+          ) : (
+            <Button
+              className="account__logout-button"
+              onClick={handleLogout}
+              icon={LogoutIcon}
+              iconPlace="right"
+              type="no-bg"
+              text={less950px ? "" : "Выйти"}
+            />
+          )}
         </div>
         <Button
           className="top__maximize-button"

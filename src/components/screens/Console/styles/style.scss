@@ -243,8 +243,54 @@
 
 @media screen and (max-width: 550px) {
   .console-screen {
+    &__header,
+    .header {
+      &__top,
+      .top {
+        padding: 0;
+
+        &__account,
+        .account {
+          &__credentials,
+          .credentials {
+            margin: 10px;
+            @include hidden-scrollbar-x();
+          }
+
+          &__logout-button,
+          .logout-button {
+            padding: 0;
+          }
+
+          .burger-button {
+            min-width: 41px;
+            min-height: 50px;
+            height: 100%;
+            border-left: 1px solid rgba(#000, 0.2);
+          }
+        }
+      }
+
+      &__bottom,
+      .bottom {
+        padding-left: 10px;
+
+        &__history-track,
+        .history-track {
+          min-height: 50px;
+
+          &__clear-button {
+            padding: 5px 10px;
+            margin-left: 10px;
+            min-width: 41px;
+          }
+        }
+      }
+    }
+
     &__body,
     .body {
+      flex: 1;
       flex-direction: column;
       width: 100%;
       padding: 10px 15px;
@@ -262,8 +308,7 @@
 
         &__inner {
           width: 100%;
-          min-height: 300px;
-          height: 300px;
+          min-height: 200px;
         }
       }
     }

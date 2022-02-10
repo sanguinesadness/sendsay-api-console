@@ -230,24 +230,8 @@ h4 {
   }
 }
 
-.button {
-  --color: #fff;
-  padding: 10px 25px;
-  border-radius: 5px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#45a6ff), to(#0055fb));
-  background: linear-gradient(180deg, #45a6ff 0%, #0055fb 100%);
-  color: var(--color);
+.burger-button {
   cursor: pointer;
-  -webkit-transition: 200ms ease all;
-  transition: 200ms ease all;
-  font-weight: 500;
-  position: relative;
-  gap: 10px;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -263,98 +247,90 @@ h4 {
           justify-content: center;
 }
 
-.button:focus {
-  -webkit-box-shadow: 0 0 0 2px rgba(69, 165, 255, 0.5);
-          box-shadow: 0 0 0 2px rgba(69, 165, 255, 0.5);
+.burger-button__inner,
+.burger-button .inner {
+  position: relative;
+  height: 16px;
+  width: 18px;
+  min-width: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.button:hover {
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0.15)), to(rgba(255, 255, 255, 0.15))), -webkit-gradient(linear, left top, left bottom, from(#45a6ff), to(#0055fb)), #c4c4c4;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)), linear-gradient(180deg, #45a6ff 0%, #0055fb 100%), #c4c4c4;
-}
-
-.button:active {
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.15)), to(rgba(0, 0, 0, 0.15))), -webkit-gradient(linear, left top, left bottom, from(#45a6ff), to(#0055fb)), #c4c4c4;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), linear-gradient(180deg, #45a6ff 0%, #0055fb 100%), #c4c4c4;
-}
-
-.button--icon-right {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
-}
-
-.button--nobg {
-  background: transparent;
-  border-radius: 7px;
-  padding: 5px 7px;
-  -webkit-transition: 200ms ease all;
-  transition: 200ms ease all;
-  --color: #0d0d0d;
-}
-
-.button--nobg .button__icon {
-  -webkit-transition: 200ms ease all;
-  transition: 200ms ease all;
-}
-
-.button--nobg .button__icon * {
-  -webkit-transition: 200ms ease all;
-  transition: 200ms ease all;
-}
-
-.button--nobg:hover {
-  --color: #0055fb;
-  background: transparent;
-}
-
-.button--nobg:focus {
-  --color: #0055fb;
-}
-
-.button--disabled {
-  background: -webkit-gradient(linear, left bottom, left top, from(#c4c4c4), to(#c4c4c4)), -webkit-gradient(linear, left top, left bottom, from(#45a6ff), to(#0055fb));
-  background: linear-gradient(0deg, #c4c4c4, #c4c4c4), linear-gradient(180deg, #45a6ff 0%, #0055fb 100%);
-  border-color: var(--color);
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.button--disabled:hover, .button--disabled:active {
-  background: -webkit-gradient(linear, left bottom, left top, from(#c4c4c4), to(#c4c4c4)), -webkit-gradient(linear, left top, left bottom, from(#45a6ff), to(#0055fb));
-  background: linear-gradient(0deg, #c4c4c4, #c4c4c4), linear-gradient(180deg, #45a6ff 0%, #0055fb 100%);
-}
-
-.button--disabled:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.button--loading .button__text,
-.button--loading .button__icon {
-  visibility: hidden;
-}
-
-.button__icon {
-  height: 1.4em;
-  width: 1.4em;
-}
-
-.button__icon svg {
-  height: 100%;
+.burger-button__inner__line,
+.burger-button__inner .line,
+.burger-button .inner__line,
+.burger-button .inner .line {
+  height: 2px;
   width: 100%;
-}
-
-.button__icon svg * {
-  stroke: var(--color);
-}
-
-.button__loading-spinner {
+  border-radius: 5px;
+  background: #383838;
   position: absolute;
-  -webkit-animation: rotating 3s linear infinite;
-          animation: rotating 3s linear infinite;
-  height: 1.4em;
-  width: 1.4em;
+  -webkit-transition: 200ms ease all;
+  transition: 200ms ease all;
+}
+
+.burger-button__inner__line--top,
+.burger-button__inner .line--top,
+.burger-button .inner__line--top,
+.burger-button .inner .line--top {
+  top: 0;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+}
+
+.burger-button__inner__line--middle,
+.burger-button__inner .line--middle,
+.burger-button .inner__line--middle,
+.burger-button .inner .line--middle {
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+.burger-button__inner__line--bottom,
+.burger-button__inner .line--bottom,
+.burger-button .inner__line--bottom,
+.burger-button .inner .line--bottom {
+  bottom: 0;
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+}
+
+.burger-button--active .burger-button__inner__line--top,
+.burger-button--active .burger-button__inner .line--top,
+.burger-button--active .inner__line--top,
+.burger-button--active .inner .line--top {
+  top: -1px;
+  -webkit-transform: rotate(45deg) scaleX(1.3);
+          transform: rotate(45deg) scaleX(1.3);
+}
+
+.burger-button--active .burger-button__inner__line--middle,
+.burger-button--active .burger-button__inner .line--middle,
+.burger-button--active .inner__line--middle,
+.burger-button--active .inner .line--middle {
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  opacity: 0;
+}
+
+.burger-button--active .burger-button__inner__line--bottom,
+.burger-button--active .burger-button__inner .line--bottom,
+.burger-button--active .inner__line--bottom,
+.burger-button--active .inner .line--bottom {
+  bottom: -1px;
+  -webkit-transform: rotate(-45deg) scaleX(1.3);
+          transform: rotate(-45deg) scaleX(1.3);
 }
 /*# sourceMappingURL=style.css.map */

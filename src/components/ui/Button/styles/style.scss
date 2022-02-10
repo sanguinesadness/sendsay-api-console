@@ -45,7 +45,7 @@
     border-radius: 7px;
     padding: 5px 7px;
     transition: $transition;
-    --color: #000;
+    --color: #{$dark};
 
     .button__icon {
       transition: $transition;

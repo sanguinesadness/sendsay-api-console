@@ -224,6 +224,12 @@ h4 {
   height: 100vh;
 }
 
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 14px;
+  }
+}
+
 .console-screen {
   height: 100vh;
   display: -webkit-box;
@@ -636,8 +642,113 @@ h4 {
 }
 
 @media screen and (max-width: 550px) {
+  .console-screen__header__top,
+  .console-screen__header .top,
+  .console-screen .header__top,
+  .console-screen .header .top {
+    padding: 0;
+  }
+  .console-screen__header__top__account__credentials,
+  .console-screen__header__top__account .credentials,
+  .console-screen__header__top .account__credentials,
+  .console-screen__header__top .account .credentials,
+  .console-screen__header .top__account__credentials,
+  .console-screen__header .top__account .credentials,
+  .console-screen__header .top .account__credentials,
+  .console-screen__header .top .account .credentials,
+  .console-screen .header__top__account__credentials,
+  .console-screen .header__top__account .credentials,
+  .console-screen .header__top .account__credentials,
+  .console-screen .header__top .account .credentials,
+  .console-screen .header .top__account__credentials,
+  .console-screen .header .top__account .credentials,
+  .console-screen .header .top .account__credentials,
+  .console-screen .header .top .account .credentials {
+    margin: 10px;
+    overflow-x: scroll;
+  }
+  .console-screen__header__top__account__credentials::-webkit-scrollbar,
+  .console-screen__header__top__account .credentials::-webkit-scrollbar,
+  .console-screen__header__top .account__credentials::-webkit-scrollbar,
+  .console-screen__header__top .account .credentials::-webkit-scrollbar,
+  .console-screen__header .top__account__credentials::-webkit-scrollbar,
+  .console-screen__header .top__account .credentials::-webkit-scrollbar,
+  .console-screen__header .top .account__credentials::-webkit-scrollbar,
+  .console-screen__header .top .account .credentials::-webkit-scrollbar,
+  .console-screen .header__top__account__credentials::-webkit-scrollbar,
+  .console-screen .header__top__account .credentials::-webkit-scrollbar,
+  .console-screen .header__top .account__credentials::-webkit-scrollbar,
+  .console-screen .header__top .account .credentials::-webkit-scrollbar,
+  .console-screen .header .top__account__credentials::-webkit-scrollbar,
+  .console-screen .header .top__account .credentials::-webkit-scrollbar,
+  .console-screen .header .top .account__credentials::-webkit-scrollbar,
+  .console-screen .header .top .account .credentials::-webkit-scrollbar {
+    display: none;
+  }
+  .console-screen__header__top__account__logout-button,
+  .console-screen__header__top__account .logout-button,
+  .console-screen__header__top .account__logout-button,
+  .console-screen__header__top .account .logout-button,
+  .console-screen__header .top__account__logout-button,
+  .console-screen__header .top__account .logout-button,
+  .console-screen__header .top .account__logout-button,
+  .console-screen__header .top .account .logout-button,
+  .console-screen .header__top__account__logout-button,
+  .console-screen .header__top__account .logout-button,
+  .console-screen .header__top .account__logout-button,
+  .console-screen .header__top .account .logout-button,
+  .console-screen .header .top__account__logout-button,
+  .console-screen .header .top__account .logout-button,
+  .console-screen .header .top .account__logout-button,
+  .console-screen .header .top .account .logout-button {
+    padding: 0;
+  }
+  .console-screen__header__top__account .burger-button,
+  .console-screen__header__top .account .burger-button,
+  .console-screen__header .top__account .burger-button,
+  .console-screen__header .top .account .burger-button,
+  .console-screen .header__top__account .burger-button,
+  .console-screen .header__top .account .burger-button,
+  .console-screen .header .top__account .burger-button,
+  .console-screen .header .top .account .burger-button {
+    min-width: 41px;
+    min-height: 50px;
+    height: 100%;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  .console-screen__header__bottom,
+  .console-screen__header .bottom,
+  .console-screen .header__bottom,
+  .console-screen .header .bottom {
+    padding-left: 10px;
+  }
+  .console-screen__header__bottom__history-track,
+  .console-screen__header__bottom .history-track,
+  .console-screen__header .bottom__history-track,
+  .console-screen__header .bottom .history-track,
+  .console-screen .header__bottom__history-track,
+  .console-screen .header__bottom .history-track,
+  .console-screen .header .bottom__history-track,
+  .console-screen .header .bottom .history-track {
+    min-height: 50px;
+  }
+  .console-screen__header__bottom__history-track__clear-button,
+  .console-screen__header__bottom .history-track__clear-button,
+  .console-screen__header .bottom__history-track__clear-button,
+  .console-screen__header .bottom .history-track__clear-button,
+  .console-screen .header__bottom__history-track__clear-button,
+  .console-screen .header__bottom .history-track__clear-button,
+  .console-screen .header .bottom__history-track__clear-button,
+  .console-screen .header .bottom .history-track__clear-button {
+    padding: 5px 10px;
+    margin-left: 10px;
+    min-width: 41px;
+  }
   .console-screen__body,
   .console-screen .body {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -665,8 +776,7 @@ h4 {
   .console-screen .body__textarea__inner,
   .console-screen .body .textarea__inner {
     width: 100%;
-    min-height: 300px;
-    height: 300px;
+    min-height: 200px;
   }
   .console-screen__footer,
   .console-screen .footer {

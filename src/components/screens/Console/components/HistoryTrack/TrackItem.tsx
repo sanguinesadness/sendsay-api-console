@@ -167,7 +167,7 @@ const TrackItem: FC<TrackItemProps> = ({
         </div>
       </div>
       <Dropdown
-        open={dropdownOpened}
+        opened={dropdownOpened}
         width={itemWidth}
         height={itemHeight}
         offsetLeft={offsetLeft}
