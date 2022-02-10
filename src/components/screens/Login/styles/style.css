@@ -253,7 +253,7 @@ h4 {
 .login-screen .content__form,
 .login-screen .content .form {
   margin: 20px 0;
-  width: 35vw;
+  width: 500px;
   border-radius: 5px;
   -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -299,5 +299,38 @@ h4 {
 .login-screen .content__form .error-label,
 .login-screen .content .form .error-label {
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .login-screen__content__header__logo,
+  .login-screen__content .header__logo,
+  .login-screen .content__header__logo,
+  .login-screen .content .header__logo {
+    width: 175px;
+    height: 100%;
+  }
+  .login-screen__content__form,
+  .login-screen__content .form,
+  .login-screen .content__form,
+  .login-screen .content .form {
+    width: 90%;
+    padding: 30px 25px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .login-screen__content__header__logo,
+  .login-screen__content .header__logo,
+  .login-screen .content__header__logo,
+  .login-screen .content .header__logo {
+    width: 150px;
+  }
+  .login-screen__content__form,
+  .login-screen__content .form,
+  .login-screen .content__form,
+  .login-screen .content .form {
+    width: 95%;
+    padding: 30px 20px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

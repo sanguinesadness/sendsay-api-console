@@ -13,7 +13,7 @@
     &__form,
     .form {
       margin: 20px 0;
-      width: 35vw;
+      width: 500px;
       @include shadow-block();
 
       &__title,
@@ -35,6 +35,47 @@
 
       .error-label {
         margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .login-screen {
+    &__content,
+    .content {
+      &__header,
+      .header {
+        &__logo {
+          width: 175px;
+          height: 100%;
+        }
+      }
+
+      &__form,
+      .form {
+        width: 90%;
+        padding: 30px 25px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .login-screen {
+    &__content,
+    .content {
+      &__header,
+      .header {
+        &__logo {
+          width: 150px;
+        }
+      }
+
+      &__form,
+      .form {
+        width: 95%;
+        padding: 30px 20px;
       }
     }
   }
