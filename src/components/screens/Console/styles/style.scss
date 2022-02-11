@@ -293,7 +293,7 @@
       flex: 1;
       flex-direction: column;
       width: 100%;
-      padding: 10px 15px;
+      padding: 10px;
 
       &__textarea,
       .textarea {
@@ -308,14 +308,27 @@
 
         &__inner {
           width: 100%;
-          min-height: 200px;
+          min-height: unset;
         }
       }
     }
 
     &__footer,
     .footer {
-      padding: 10px 0;
+      padding: 10px;
+
+      &__send-button svg {
+        fill: #fff;
+      }
+
+      &__send-button,
+      &__align-button {
+        margin: 0;
+      }
+
+      &__align-button {
+        padding-right: 5px;
+      }
     }
   }
 }

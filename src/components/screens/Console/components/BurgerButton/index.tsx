@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import BurgerMenu from "components/ui/BurgerMenu";
 import { useTypedSelector } from "hooks/useTypedSelector";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleBurgerMenu } from "store/actions/burger-menu";
 import "./styles/style.css";

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { GITHUB_LINK, GITHUB_NAME } from "constants/github";
 import { ReactComponent as AlignIcon } from "assets/icons/align.svg";
+import { ReactComponent as SendIcon } from "assets/icons/send.svg";
 import Button from "components/ui/Button";
 import "./styles/style.css";
 import { useDispatch } from "react-redux";
@@ -10,7 +11,11 @@ import { addHistoryTrackItem } from "store/actions/history-track";
 
 const Footer = () => {
   const dispatch = useDispatch();
+
   const consoleState = useTypedSelector((root) => root.console);
+  const windowState = useTypedSelector((root) => root.window);
+
+  const less550px = windowState.width < 550;
 
   const handlePretty = () => dispatch(prettyRequest());
 
@@ -29,7 +34,8 @@ const Footer = () => {
     <div className="console-screen__footer footer">
       <Button
         className="footer__send-button"
-        text="Отправить"
+        text={less550px ? "" : "Отправить"}
+        icon={less550px ? SendIcon : undefined}
         loading={consoleState.loading}
         type="default"
         onClick={handleRequest}

@@ -754,7 +754,7 @@ h4 {
         -ms-flex-direction: column;
             flex-direction: column;
     width: 100%;
-    padding: 10px 15px;
+    padding: 10px;
   }
   .console-screen__body__textarea,
   .console-screen__body .textarea,
@@ -776,11 +776,24 @@ h4 {
   .console-screen .body__textarea__inner,
   .console-screen .body .textarea__inner {
     width: 100%;
-    min-height: 200px;
+    min-height: unset;
   }
   .console-screen__footer,
   .console-screen .footer {
-    padding: 10px 0;
+    padding: 10px;
+  }
+  .console-screen__footer__send-button svg,
+  .console-screen .footer__send-button svg {
+    fill: #fff;
+  }
+  .console-screen__footer__send-button, .console-screen__footer__align-button,
+  .console-screen .footer__send-button,
+  .console-screen .footer__align-button {
+    margin: 0;
+  }
+  .console-screen__footer__align-button,
+  .console-screen .footer__align-button {
+    padding-right: 5px;
   }
 }
 /*# sourceMappingURL=style.css.map */

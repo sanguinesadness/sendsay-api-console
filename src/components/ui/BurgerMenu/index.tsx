@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { ReactComponent as LogoutIcon } from "assets/icons/logout.svg";
 import { ReactComponent as CloseIcon } from "assets/icons/close.svg";
+import { ReactComponent as LogoIcon } from "assets/icons/logo.svg";
 import { useTypedSelector } from "hooks/useTypedSelector";
 import React, { FC } from "react";
 import "./styles/style.css";
@@ -30,6 +31,9 @@ const BurgerMenu: FC = () => {
         "burger-menu--opened": opened,
         "burger-menu--closed": !opened,
       })}>
+      <div className="burger-menu__logo logo">
+        <LogoIcon className="logo__inner" />
+      </div>
       <div className="burger-menu__options options">
         <div className="options__option option" onClick={handleLogout}>
           <LogoutIcon className="option__icon" />
