@@ -52,7 +52,7 @@
       @include flex-centered();
 
       &:hover {
-        background: rgba(#fff, 0.4);
+        background: rgba($dark, 0.05);
       }
 
       &__icon {
@@ -75,8 +75,8 @@
     width: 100%;
 
     .button__icon {
-      height: 1.8em;
-      width: 1.8em;
+      height: 1.7em;
+      width: 1.7em;
     }
   }
 }

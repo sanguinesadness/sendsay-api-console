@@ -327,7 +327,7 @@ h4 {
 .burger-menu__options .option:hover,
 .burger-menu .options__option:hover,
 .burger-menu .options .option:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(13, 13, 13, 0.05);
 }
 
 .burger-menu__options__option__icon,
@@ -355,7 +355,7 @@ h4 {
 }
 
 .burger-menu__close-button.button .button__icon {
-  height: 1.8em;
-  width: 1.8em;
+  height: 1.7em;
+  width: 1.7em;
 }
 /*# sourceMappingURL=style.css.map */

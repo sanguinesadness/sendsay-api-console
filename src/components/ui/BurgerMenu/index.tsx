@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import { ReactComponent as LogoutIcon } from "assets/icons/logout.svg";
 import { ReactComponent as CloseIcon } from "assets/icons/close.svg";
 import { ReactComponent as LogoIcon } from "assets/icons/logo.svg";
 import { useTypedSelector } from "hooks/useTypedSelector";
@@ -8,22 +7,18 @@ import "./styles/style.css";
 import { useDispatch } from "react-redux";
 import Button from "../Button";
 import { closeBurgerMenu } from "store/actions/burger-menu";
-import { logout } from "store/actions/auth";
-import { useNavigate } from "react-router-dom";
+import { BurgerMenuOption } from "types/burger-menu";
 
-const BurgerMenu: FC = () => {
+export interface BurgerMenuProps {
+  options: BurgerMenuOption[];
+}
+
+const BurgerMenu: FC<BurgerMenuProps> = ({ options }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const { opened } = useTypedSelector((root) => root.burgerMenu);
 
   const closeMenu = () => dispatch(closeBurgerMenu());
-
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate("/login");
-    closeMenu();
-  };
 
   return (
     <div
@@ -35,10 +30,15 @@ const BurgerMenu: FC = () => {
         <LogoIcon className="logo__inner" />
       </div>
       <div className="burger-menu__options options">
-        <div className="options__option option" onClick={handleLogout}>
-          <LogoutIcon className="option__icon" />
-          <span className="option__text">Выйти</span>
-        </div>
+        {options.map((option) => (
+          <div
+            key={option.id}
+            className="options__option option"
+            onClick={option.onClick}>
+            <option.icon className="option__icon" />
+            <span className="option__text">{option.text}</span>
+          </div>
+        ))}
       </div>
       <Button
         className="burger-menu__close-button"
