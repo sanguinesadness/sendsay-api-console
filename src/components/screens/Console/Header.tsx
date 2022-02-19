@@ -1,5 +1,4 @@
 import React, { FC, useContext } from "react";
-import { useDispatch } from "react-redux";
 import { ReactComponent as LogoIcon } from "assets/icons/logo.svg";
 import { ReactComponent as LogoutIcon } from "assets/icons/logout.svg";
 import { ReactComponent as MaximizeIcon } from "assets/icons/maximize.svg";
