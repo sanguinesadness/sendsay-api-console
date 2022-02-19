@@ -1,6 +1,6 @@
 import { SendsayRequest } from "api/sendsay/types/request";
-import { action, makeAutoObservable, runInAction } from "mobx";
-import { HistoryTrackItem } from "store/types/history-track";
+import { makeAutoObservable, runInAction } from "mobx";
+import { HistoryTrackItem } from "stores/history-track/types/index";
 import { LastItemPayload, ResponsePayload } from "./types";
 import sendsayApi from "api/sendsay";
 import { v4 } from "uuid";
@@ -8,12 +8,12 @@ import { prettyJSON } from "common/json-prettier";
 import React from "react";
 
 class ConsoleState {
-  _lastItem?: HistoryTrackItem;
-  _request = "";
-  _response = "";
-  _loading = false;
-  _requestError?: boolean = false;
-  _responseError?: boolean = false;
+  private _lastItem?: HistoryTrackItem;
+  private _request = "";
+  private _response = "";
+  private _loading = false;
+  private _requestError?: boolean = false;
+  private _responseError?: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -82,6 +82,7 @@ class ConsoleState {
       if (!request.action) throw new Error();
     } catch {
       this.setRequestError(true);
+      this.setLoading(false);
       return;
     }
 

@@ -1,28 +1,27 @@
 import BurgerMenu from "components/ui/BurgerMenu";
 import { useContext, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Console from "./components/screens/Console";
 import Login from "./components/screens/Login";
 import { ReactComponent as LogoutIcon } from "assets/icons/logout.svg";
-import { closeBurgerMenu } from "store/actions/burger-menu";
 import { BurgerMenuOption } from "types/burger-menu";
 import { AuthStateContext } from "stores/auth/index";
 import { observer } from "mobx-react-lite";
+import { WindowStateContext } from "stores/window";
+import { BurgerMenuStateContext } from "stores/burger-menu";
 import { v4 } from "uuid";
 import "./styles/style.css";
-import { WindowStateContext } from "stores/window";
 
 function App() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const authState = useContext(AuthStateContext);
   const windowState = useContext(WindowStateContext);
+  const burgerMenuState = useContext(BurgerMenuStateContext);
 
   const less550px = windowState.width < 550;
 
-  const closeMenu = () => dispatch(closeBurgerMenu());
+  const closeMenu = () => burgerMenuState.close();
 
   const handleLogout = () => {
     authState.logout();

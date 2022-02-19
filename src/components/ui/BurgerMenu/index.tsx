@@ -1,29 +1,27 @@
-import classNames from "classnames";
+import React, { FC, useContext } from "react";
 import { ReactComponent as CloseIcon } from "assets/icons/close.svg";
 import { ReactComponent as LogoIcon } from "assets/icons/logo.svg";
-import { useTypedSelector } from "hooks/useTypedSelector";
-import React, { FC } from "react";
-import "./styles/style.css";
-import { useDispatch } from "react-redux";
-import Button from "../Button";
-import { closeBurgerMenu } from "store/actions/burger-menu";
+import { BurgerMenuStateContext } from "stores/burger-menu";
 import { BurgerMenuOption } from "types/burger-menu";
+import classNames from "classnames";
+import Button from "../Button";
+import "./styles/style.css";
+import { observer } from "mobx-react-lite";
 
 export interface BurgerMenuProps {
   options: BurgerMenuOption[];
 }
 
 const BurgerMenu: FC<BurgerMenuProps> = ({ options }) => {
-  const dispatch = useDispatch();
+  const burgerMenuState = useContext(BurgerMenuStateContext);
 
-  const { opened } = useTypedSelector((root) => root.burgerMenu);
-  const closeMenu = () => dispatch(closeBurgerMenu());
+  const closeMenu = () => burgerMenuState.close();
 
   return (
     <div
       className={classNames("burger-menu", {
-        "burger-menu--opened": opened,
-        "burger-menu--closed": !opened,
+        "burger-menu--opened": burgerMenuState.opened,
+        "burger-menu--closed": !burgerMenuState.opened,
       })}>
       <div className="burger-menu__logo logo">
         <LogoIcon className="logo__inner" />
@@ -49,4 +47,4 @@ const BurgerMenu: FC<BurgerMenuProps> = ({ options }) => {
   );
 };
 
-export default BurgerMenu;
+export default observer(BurgerMenu);

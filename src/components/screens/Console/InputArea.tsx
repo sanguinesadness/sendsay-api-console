@@ -1,5 +1,4 @@
 import TextArea from "components/ui/TextArea";
-import { useTypedSelector } from "hooks/useTypedSelector";
 import { observer } from "mobx-react-lite";
 import React, { FC, useContext } from "react";
 import { ConsoleStateContext } from "stores/console";

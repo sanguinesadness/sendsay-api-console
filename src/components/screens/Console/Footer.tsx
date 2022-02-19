@@ -3,18 +3,16 @@ import { GITHUB_LINK, GITHUB_NAME } from "constants/github";
 import { ReactComponent as AlignIcon } from "assets/icons/align.svg";
 import { ReactComponent as SendIcon } from "assets/icons/send.svg";
 import Button from "components/ui/Button";
-import { useDispatch } from "react-redux";
-import { addHistoryTrackItem } from "store/actions/history-track";
 import { WindowStateContext } from "stores/window";
 import { observer } from "mobx-react-lite";
 import { ConsoleStateContext } from "stores/console";
+import { HistoryTrackStateContext } from "stores/history-track";
 import "./styles/style.css";
 
 const Footer = () => {
-  const dispatch = useDispatch();
-
   const consoleState = useContext(ConsoleStateContext);
   const windowState = useContext(WindowStateContext);
+  const historyTrackState = useContext(HistoryTrackStateContext);
 
   const less550px = windowState.width < 550;
 
@@ -27,8 +25,7 @@ const Footer = () => {
 
   // add item to HistoryTrack
   useEffect(() => {
-    if (consoleState.lastItem)
-      dispatch(addHistoryTrackItem(consoleState.lastItem));
+    if (consoleState.lastItem) historyTrackState.addItem(consoleState.lastItem);
   }, [consoleState.lastItem]);
 
   return (

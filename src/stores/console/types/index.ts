@@ -1,4 +1,4 @@
-import { HistoryTrackItem } from "store/types/history-track";
+import { HistoryTrackItem } from "stores/history-track/types/index";
 
 export interface ResponsePayload {
   result: string;

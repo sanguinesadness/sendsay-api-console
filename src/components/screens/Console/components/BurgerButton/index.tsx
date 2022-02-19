@@ -1,21 +1,18 @@
 import classNames from "classnames";
-import BurgerMenu from "components/ui/BurgerMenu";
-import { useTypedSelector } from "hooks/useTypedSelector";
-import React from "react";
-import { useDispatch } from "react-redux";
-import { toggleBurgerMenu } from "store/actions/burger-menu";
+import { observer } from "mobx-react-lite";
+import React, { useContext } from "react";
+import { BurgerMenuStateContext } from "stores/burger-menu";
 import "./styles/style.css";
 
 const BurgerButton = () => {
-  const dispatch = useDispatch();
-  const toggleMenu = () => dispatch(toggleBurgerMenu());
+  const burgerMenuState = useContext(BurgerMenuStateContext);
 
-  const { opened } = useTypedSelector((root) => root.burgerMenu);
+  const toggleMenu = () => burgerMenuState.toggle();
 
   return (
     <div
       className={classNames("burger-button", {
-        "burger-button--active": opened,
+        "burger-button--active": burgerMenuState.opened,
       })}
       onClick={toggleMenu}>
       <div className="burger-button__inner inner">
@@ -27,4 +24,4 @@ const BurgerButton = () => {
   );
 };
 
-export default BurgerButton;
+export default observer(BurgerButton);

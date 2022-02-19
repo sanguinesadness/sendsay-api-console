@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { useOutsideClicker } from "hooks/useOutsideClicker";
+import { observer } from "mobx-react-lite";
 import React, { FC, useContext, useEffect, useRef, useState } from "react";
 import { WindowStateContext } from "stores/window";
 import { DropdownOption } from "types/dropdown";
@@ -85,4 +86,4 @@ const Dropdown: FC<DropdownProps> = ({
   );
 };
 
-export default Dropdown;
+export default observer(Dropdown);

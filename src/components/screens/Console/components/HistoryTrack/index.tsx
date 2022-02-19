@@ -1,22 +1,18 @@
-import classNames from "classnames";
-import React, { FC, useEffect, useRef, useState } from "react";
-import Button from "../../../../ui/Button";
-import { ReactComponent as CloseIcon } from "../../../../../assets/icons/close.svg";
+import React, { FC, useContext, useEffect, useRef, useState } from "react";
+import { ReactComponent as CloseIcon } from "assets/icons/close.svg";
+import { HistoryTrackStateContext } from "stores/history-track";
+import Button from "components/ui/Button/index";
 import TrackItem from "./TrackItem";
-import { useTypedSelector } from "hooks/useTypedSelector";
-import { useDispatch } from "react-redux";
-import {
-  clearHistoryTrack,
-  restoreHistoryTrack,
-} from "store/actions/history-track";
+import classNames from "classnames";
+import "./styles/style.css";
+import { observer } from "mobx-react-lite";
 
 interface HistoryTrackProps {
   className?: string;
 }
 
 const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
-  const { items } = useTypedSelector((root) => root.historyTrack);
-  const dispatch = useDispatch();
+  const historyTrackState = useContext(HistoryTrackStateContext);
 
   const [leftFadeVisible, setLeftFadeVisible] = useState<boolean>(false);
   const [rightFadeVisible, setRightFadeVisible] = useState<boolean>(false);
@@ -47,11 +43,11 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
   };
 
   const handleClearClick = () => {
-    dispatch(clearHistoryTrack());
+    historyTrackState.clear();
   };
 
   useEffect(() => {
-    dispatch(restoreHistoryTrack());
+    historyTrackState.restore();
 
     const handleScroll = () => {
       setScrollOffsetY(document.scrollingElement?.scrollTop || 0);
@@ -67,7 +63,7 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
   useEffect(() => {
     if (!actionsRef.current) return;
     updateSideFades(actionsRef.current);
-  }, [items.length]);
+  }, [historyTrackState.items.length]);
 
   return (
     <div className={classNames("history-track", className)}>
@@ -75,8 +71,8 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
         className="history-track__actions actions"
         onScroll={handleActionsScroll}
         ref={actionsRef}>
-        {items.length > 0 ? (
-          items.map((item) => (
+        {historyTrackState.items.length > 0 ? (
+          historyTrackState.items.map((item) => (
             <TrackItem
               key={item.id}
               item={item}
@@ -114,4 +110,4 @@ const HistoryTrack: FC<HistoryTrackProps> = ({ className }) => {
   );
 };
 
-export default HistoryTrack;
+export default observer(HistoryTrack);
