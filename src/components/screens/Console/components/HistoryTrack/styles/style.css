@@ -429,9 +429,6 @@ h4 {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .history-track__actions__action__info__copy-state svg,
@@ -536,6 +533,27 @@ h4 {
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
   opacity: 0;
+}
+
+.history-track__actions__action__info__copy-state--text-only,
+.history-track__actions__action__info .info__copy-state--text-only,
+.history-track__actions__action .info__copy-state--text-only,
+.history-track__actions__action .info .info__copy-state--text-only,
+.history-track__actions .action__info__copy-state--text-only,
+.history-track__actions .action__info .info__copy-state--text-only,
+.history-track__actions .action .info__copy-state--text-only,
+.history-track__actions .action .info .info__copy-state--text-only,
+.history-track .actions__action__info__copy-state--text-only,
+.history-track .actions__action__info .info__copy-state--text-only,
+.history-track .actions__action .info__copy-state--text-only,
+.history-track .actions__action .info .info__copy-state--text-only,
+.history-track .actions .action__info__copy-state--text-only,
+.history-track .actions .action__info .info__copy-state--text-only,
+.history-track .actions .action .info__copy-state--text-only,
+.history-track .actions .action .info .info__copy-state--text-only {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .history-track__actions__action__dropdown-button,

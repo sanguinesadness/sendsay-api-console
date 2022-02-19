@@ -156,6 +156,7 @@ const TrackItem: FC<TrackItemProps> = ({
               { "info__copy-state--idle": copyState === CopyStates.IDLE },
               { "info__copy-state--copied": copyState === CopyStates.COPIED },
               { "info__copy-state--away": copyState === CopyStates.AWAY },
+              { "info__copy-state--text-only": itemWidth >= 150 },
             )}>
             {itemWidth < 150 ? <CheckIcon /> : "Скопировано"}
           </span>

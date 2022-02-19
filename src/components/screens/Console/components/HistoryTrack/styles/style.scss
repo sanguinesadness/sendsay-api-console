@@ -117,7 +117,6 @@
           font-size: 0.7em;
           text-align: center;
           @include no-selection();
-          @include text-ellipsis();
 
           svg {
             height: 1.3em;
@@ -143,6 +142,10 @@
           &--away {
             transform: translateY(-100%);
             opacity: 0;
+          }
+
+          &--text-only {
+            @include text-ellipsis();
           }
         }
       }
