@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ReactComponent as LogoIcon } from "assets/icons/logo.svg";
 import { GITHUB_LINK, GITHUB_NAME } from "constants/github";
 import Button from "components/ui/Button";
 import Input from "components/ui/Input";
-import "./styles/style.css";
-import { useDispatch } from "react-redux";
-import { login as loginAction } from "store/actions/auth";
-import { useTypedSelector } from "hooks/useTypedSelector";
 import ErrorLabel from "components/ui/ErrorLabel";
+import { observer } from "mobx-react-lite";
+import { AuthStateContext } from "stores/auth/index";
+import "./styles/style.css";
 
 interface InputState {
   value: string;
@@ -21,8 +20,7 @@ const Login = () => {
   const [sublogin, setSublogin] = useState<InputState>(initialState);
   const [password, setPassword] = useState<InputState>(initialState);
 
-  const dispatch = useDispatch();
-  const { loading, error } = useTypedSelector((root) => root.auth);
+  const authState = useContext(AuthStateContext);
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -50,13 +48,11 @@ const Login = () => {
   const doLogin = async () => {
     if (!allFieldsValid) return;
 
-    dispatch(
-      loginAction({
-        login: login.value,
-        sublogin: sublogin.value,
-        password: password.value,
-      }),
-    );
+    return authState.login({
+      login: login.value,
+      sublogin: sublogin.value,
+      password: password.value,
+    });
   };
 
   return (
@@ -69,10 +65,10 @@ const Login = () => {
           <div className="form__title title">
             <h3 className="title__inner">API-консолька</h3>
           </div>
-          {error && (
+          {authState.error && (
             <ErrorLabel
               title="Вход не вышел"
-              message={`{id: "${error.id}", explain: "${error.explain}"}`}
+              message={`{id: "${authState.error.id}", explain: "${authState.error.explain}"}`}
             />
           )}
           <div className="form__fields fields">
@@ -113,7 +109,7 @@ const Login = () => {
               text="Войти"
               type="default"
               onClick={doLogin}
-              loading={loading}
+              loading={authState.loading}
               disabled={!allFieldsValid}
             />
           </div>
@@ -132,4 +128,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default observer(Login);

@@ -1,13 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { ReactComponent as DragIcon } from "assets/icons/drag.svg";
-import "./styles/style.css";
-import InputArea from "./InputArea";
 import OutputArea from "./OutputArea";
-import { useTypedSelector } from "hooks/useTypedSelector";
+import InputArea from "./InputArea";
+import { WindowStateContext } from "stores/window";
+import { observer } from "mobx-react-lite";
+import "./styles/style.css";
 
 const Body = () => {
   const bodyRef = useRef<HTMLDivElement>(null);
-  const windowState = useTypedSelector((root) => root.window);
+  const windowState = useContext(WindowStateContext);
 
   const less950px = windowState.width < 950;
   const less550px = windowState.width < 550;
@@ -53,4 +54,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default observer(Body);

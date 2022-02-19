@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Body from "./Body";
 import Footer from "./Footer";
 import Header from "./Header";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { ReactComponent as LoadingIcon } from "assets/icons/loading.svg";
+import { AuthStateContext } from "stores/auth";
+import { observer } from "mobx-react-lite";
 import "./styles/style.css";
-import { useTypedSelector } from "hooks/useTypedSelector";
 
 const Console = () => {
-  const authState = useTypedSelector((root) => root.auth);
+  const authState = useContext(AuthStateContext);
   const fullScreenHandle = useFullScreenHandle();
 
   if (authState.loading) {
@@ -30,4 +31,4 @@ const Console = () => {
   );
 };
 
-export default Console;
+export default observer(Console);

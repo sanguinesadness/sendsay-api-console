@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { observer } from "mobx-react-lite";
 import React, { FC } from "react";
 import "./styles/style.css";
 
@@ -52,4 +53,4 @@ const TextArea: FC<TextAreaProps> = ({
   );
 };
 
-export default TextArea;
+export default observer(TextArea);

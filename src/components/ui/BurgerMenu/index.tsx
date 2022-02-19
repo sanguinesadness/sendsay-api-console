@@ -17,7 +17,6 @@ const BurgerMenu: FC<BurgerMenuProps> = ({ options }) => {
   const dispatch = useDispatch();
 
   const { opened } = useTypedSelector((root) => root.burgerMenu);
-
   const closeMenu = () => dispatch(closeBurgerMenu());
 
   return (

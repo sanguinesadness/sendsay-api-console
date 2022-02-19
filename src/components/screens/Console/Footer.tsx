@@ -1,27 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { GITHUB_LINK, GITHUB_NAME } from "constants/github";
 import { ReactComponent as AlignIcon } from "assets/icons/align.svg";
 import { ReactComponent as SendIcon } from "assets/icons/send.svg";
 import Button from "components/ui/Button";
-import "./styles/style.css";
 import { useDispatch } from "react-redux";
-import { makeRequest, prettyRequest } from "store/actions/console";
-import { useTypedSelector } from "hooks/useTypedSelector";
 import { addHistoryTrackItem } from "store/actions/history-track";
+import { WindowStateContext } from "stores/window";
+import { observer } from "mobx-react-lite";
+import { ConsoleStateContext } from "stores/console";
+import "./styles/style.css";
 
 const Footer = () => {
   const dispatch = useDispatch();
 
-  const consoleState = useTypedSelector((root) => root.console);
-  const windowState = useTypedSelector((root) => root.window);
+  const consoleState = useContext(ConsoleStateContext);
+  const windowState = useContext(WindowStateContext);
 
   const less550px = windowState.width < 550;
 
-  const handlePretty = () => dispatch(prettyRequest());
+  const handlePretty = () => consoleState.prettyRequest();
 
   const handleRequest = () => {
-    dispatch(prettyRequest());
-    dispatch(makeRequest(consoleState.request));
+    consoleState.prettyRequest();
+    consoleState.makeRequest(consoleState.request);
   };
 
   // add item to HistoryTrack
@@ -60,4 +61,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default observer(Footer);

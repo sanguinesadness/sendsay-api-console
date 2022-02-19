@@ -224,6 +224,12 @@ h4 {
   height: 100vh;
 }
 
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 14px;
+  }
+}
+
 .input {
   display: -webkit-box;
   display: -ms-flexbox;

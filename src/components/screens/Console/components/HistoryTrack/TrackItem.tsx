@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useContext, useRef, useState } from "react";
 import "./styles/style.css";
 import { ReactComponent as DragIcon } from "assets/icons/drag.svg";
 import { ReactComponent as CheckIcon } from "assets/icons/check.svg";
@@ -9,9 +9,9 @@ import { v4 } from "uuid";
 import { HistoryTrackItem } from "store/types/history-track";
 import { useDispatch } from "react-redux";
 import { useTypedSelector } from "hooks/useTypedSelector";
-import { makeRequest, prettyRequest, setRequest } from "store/actions/console";
 import { prettyJSON } from "common/json-prettier";
 import { deleteHistoryTrackItem } from "store/actions/history-track";
+import { ConsoleStateContext } from "stores/console";
 
 export enum CopyStates {
   // normal state
@@ -39,6 +39,7 @@ const TrackItem: FC<TrackItemProps> = ({
 }) => {
   const dispatch = useDispatch();
   const historyTrackState = useTypedSelector((root) => root.historyTrack);
+  const consoleState = useContext(ConsoleStateContext);
 
   const [copyState, setCopyState] = useState<CopyStates>(CopyStates.IDLE);
 
@@ -84,17 +85,17 @@ const TrackItem: FC<TrackItemProps> = ({
     const queryStr = getItemQueryStr();
     if (!queryStr) return;
 
-    dispatch(setRequest(queryStr));
-    dispatch(prettyRequest());
+    consoleState.setRequest(queryStr);
+    consoleState.prettyRequest();
   };
 
   const handleExecuteClick = () => {
     const queryStr = getItemQueryStr();
     if (!queryStr) return;
 
-    dispatch(setRequest(queryStr));
-    dispatch(prettyRequest());
-    dispatch(makeRequest(queryStr));
+    consoleState.setRequest(queryStr);
+    consoleState.prettyRequest();
+    consoleState.makeRequest(queryStr);
   };
 
   const handleCopyClick = () => {
