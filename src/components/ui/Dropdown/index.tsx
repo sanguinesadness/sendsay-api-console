@@ -1,7 +1,8 @@
 import classNames from "classnames";
 import { useOutsideClicker } from "hooks/useOutsideClicker";
-import { useTypedSelector } from "hooks/useTypedSelector";
-import React, { FC, useEffect, useRef, useState } from "react";
+import { observer } from "mobx-react-lite";
+import React, { FC, useContext, useEffect, useRef, useState } from "react";
+import { WindowStateContext } from "stores/window";
 import { DropdownOption } from "types/dropdown";
 import "./styles/style.css";
 
@@ -25,7 +26,7 @@ const Dropdown: FC<DropdownProps> = ({
   const [openedInner, setOpenedInner] = useState<boolean>(opened);
   const [offsetTopInner, setOffsetTopInner] = useState<number>(offsetTop);
 
-  const windowState = useTypedSelector((root) => root.window);
+  const windowState = useContext(WindowStateContext);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -85,4 +86,4 @@ const Dropdown: FC<DropdownProps> = ({
   );
 };
 
-export default Dropdown;
+export default observer(Dropdown);

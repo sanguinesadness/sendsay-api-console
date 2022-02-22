@@ -1,31 +1,30 @@
 import BurgerMenu from "components/ui/BurgerMenu";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useContext, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { updateWindowSize } from "store/actions/window";
 import Console from "./components/screens/Console";
 import Login from "./components/screens/Login";
-import { useTypedSelector } from "./hooks/useTypedSelector";
-import { checkAuth, logout } from "./store/actions/auth";
 import { ReactComponent as LogoutIcon } from "assets/icons/logout.svg";
-import { closeBurgerMenu } from "store/actions/burger-menu";
 import { BurgerMenuOption } from "types/burger-menu";
+import { AuthStateContext } from "stores/auth/index";
+import { observer } from "mobx-react-lite";
+import { WindowStateContext } from "stores/window";
+import { BurgerMenuStateContext } from "stores/burger-menu";
 import { v4 } from "uuid";
 import "./styles/style.css";
 
 function App() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const authState = useTypedSelector((root) => root.auth);
-  const windowState = useTypedSelector((root) => root.window);
+  const authState = useContext(AuthStateContext);
+  const windowState = useContext(WindowStateContext);
+  const burgerMenuState = useContext(BurgerMenuStateContext);
 
   const less550px = windowState.width < 550;
 
-  const closeMenu = () => dispatch(closeBurgerMenu());
+  const closeMenu = () => burgerMenuState.close();
 
   const handleLogout = () => {
-    dispatch(logout());
+    authState.logout();
     navigate("/login");
     closeMenu();
   };
@@ -40,9 +39,9 @@ function App() {
   ];
 
   useEffect(() => {
-    dispatch(checkAuth());
+    authState.checkAuth();
 
-    const handleResize = () => dispatch(updateWindowSize());
+    const handleResize = () => windowState.updateSizes();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
@@ -68,4 +67,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);

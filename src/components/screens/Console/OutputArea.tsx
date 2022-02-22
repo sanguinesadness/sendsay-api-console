@@ -1,10 +1,9 @@
 import TextArea from "components/ui/TextArea";
-import { useTypedSelector } from "hooks/useTypedSelector";
-import React from "react";
+import { observer } from "mobx-react-lite";
+import React, { useContext } from "react";
 import { useEffect } from "react";
 import { FC } from "react";
-import { useDispatch } from "react-redux";
-import { prettyResponse } from "store/actions/console";
+import { ConsoleStateContext } from "stores/console";
 import "./styles/style.css";
 
 interface OutputAreaProps {
@@ -13,21 +12,18 @@ interface OutputAreaProps {
 }
 
 const OutputArea: FC<OutputAreaProps> = ({ width, minWidth }) => {
-  const dispatch = useDispatch();
-  const { response: result, responseError: resultError } = useTypedSelector(
-    (root) => root.console,
-  );
+  const consoleState = useContext(ConsoleStateContext);
 
   useEffect(() => {
-    dispatch(prettyResponse());
-  }, [result]);
+    consoleState.prettyResponse();
+  }, [consoleState.response]);
 
   return (
     <TextArea
       className="body__textarea body__textarea--output"
       label="Ответ:"
-      error={resultError}
-      value={result}
+      error={consoleState.responseError}
+      value={consoleState.response}
       width={width}
       readOnly
       minWidth={minWidth}
@@ -35,4 +31,4 @@ const OutputArea: FC<OutputAreaProps> = ({ width, minWidth }) => {
   );
 };
 
-export default OutputArea;
+export default observer(OutputArea);

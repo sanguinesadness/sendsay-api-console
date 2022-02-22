@@ -1,17 +1,17 @@
-import React, { FC, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { FC, useContext } from "react";
 import { ReactComponent as LogoIcon } from "assets/icons/logo.svg";
 import { ReactComponent as LogoutIcon } from "assets/icons/logout.svg";
 import { ReactComponent as MaximizeIcon } from "assets/icons/maximize.svg";
 import { ReactComponent as MinimizeIcon } from "assets/icons/minimize.svg";
-import { useTypedSelector } from "hooks/useTypedSelector";
 import Button from "components/ui/Button";
-import "./styles/style.css";
 import HistoryTrack from "./components/HistoryTrack";
-import { logout } from "store/actions/auth";
 import { useNavigate } from "react-router-dom";
 import { FullScreenHandle } from "react-full-screen";
 import BurgerButton from "./components/BurgerButton";
+import { AuthStateContext } from "stores/auth";
+import { observer } from "mobx-react-lite";
+import { WindowStateContext } from "stores/window";
+import "./styles/style.css";
 
 interface HeaderProps {
   fullScreenHandle: FullScreenHandle;
@@ -19,16 +19,15 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ fullScreenHandle }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const authState = useTypedSelector((root) => root.auth);
-  const windowState = useTypedSelector((root) => root.window);
+  const authState = useContext(AuthStateContext);
+  const windowState = useContext(WindowStateContext);
 
   const less950px = windowState.width < 950;
   const less550px = windowState.width < 550;
 
   const handleLogout = () => {
-    dispatch(logout());
+    authState.logout();
     navigate("/login");
   };
 
@@ -84,4 +83,4 @@ const Header: FC<HeaderProps> = ({ fullScreenHandle }) => {
   );
 };
 
-export default Header;
+export default observer(Header);

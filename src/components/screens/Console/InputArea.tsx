@@ -1,8 +1,7 @@
 import TextArea from "components/ui/TextArea";
-import { useTypedSelector } from "hooks/useTypedSelector";
-import React, { FC, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setRequest } from "store/actions/console";
+import { observer } from "mobx-react-lite";
+import React, { FC, useContext } from "react";
+import { ConsoleStateContext } from "stores/console";
 import "./styles/style.css";
 
 interface InputAreaProps {
@@ -11,11 +10,10 @@ interface InputAreaProps {
 }
 
 const InputArea: FC<InputAreaProps> = ({ width, minWidth }) => {
-  const dispatch = useDispatch();
-  const consoleState = useTypedSelector((root) => root.console);
+  const consoleState = useContext(ConsoleStateContext);
 
   const onQueryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(setRequest(event.target.value));
+    consoleState.setRequest(event.target.value);
   };
 
   return (
@@ -31,4 +29,4 @@ const InputArea: FC<InputAreaProps> = ({ width, minWidth }) => {
   );
 };
 
-export default InputArea;
+export default observer(InputArea);

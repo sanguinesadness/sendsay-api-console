@@ -1,17 +1,16 @@
-import React, { FC, useRef, useState } from "react";
-import "./styles/style.css";
+import React, { FC, useContext, useRef, useState } from "react";
 import { ReactComponent as DragIcon } from "assets/icons/drag.svg";
 import { ReactComponent as CheckIcon } from "assets/icons/check.svg";
 import classNames from "classnames";
 import Dropdown from "components/ui/Dropdown";
 import { DropdownOption } from "types/dropdown";
 import { v4 } from "uuid";
-import { HistoryTrackItem } from "store/types/history-track";
-import { useDispatch } from "react-redux";
-import { useTypedSelector } from "hooks/useTypedSelector";
-import { makeRequest, prettyRequest, setRequest } from "store/actions/console";
 import { prettyJSON } from "common/json-prettier";
-import { deleteHistoryTrackItem } from "store/actions/history-track";
+import { ConsoleStateContext } from "stores/console";
+import { HistoryTrackStateContext } from "stores/history-track";
+import { HistoryTrackItem } from "stores/history-track/types";
+import "./styles/style.css";
+import { observer } from "mobx-react-lite";
 
 export enum CopyStates {
   // normal state
@@ -37,8 +36,8 @@ const TrackItem: FC<TrackItemProps> = ({
   wrapperOffsetLeft,
   wrapperOffsetTop,
 }) => {
-  const dispatch = useDispatch();
-  const historyTrackState = useTypedSelector((root) => root.historyTrack);
+  const historyTrackState = useContext(HistoryTrackStateContext);
+  const consoleState = useContext(ConsoleStateContext);
 
   const [copyState, setCopyState] = useState<CopyStates>(CopyStates.IDLE);
 
@@ -84,17 +83,17 @@ const TrackItem: FC<TrackItemProps> = ({
     const queryStr = getItemQueryStr();
     if (!queryStr) return;
 
-    dispatch(setRequest(queryStr));
-    dispatch(prettyRequest());
+    consoleState.setRequest(queryStr);
+    consoleState.prettyRequest();
   };
 
   const handleExecuteClick = () => {
     const queryStr = getItemQueryStr();
     if (!queryStr) return;
 
-    dispatch(setRequest(queryStr));
-    dispatch(prettyRequest());
-    dispatch(makeRequest(queryStr));
+    consoleState.setRequest(queryStr);
+    consoleState.prettyRequest();
+    consoleState.makeRequest(queryStr);
   };
 
   const handleCopyClick = () => {
@@ -109,7 +108,7 @@ const TrackItem: FC<TrackItemProps> = ({
   };
 
   const handleDeleteClick = () => {
-    dispatch(deleteHistoryTrackItem(item.id));
+    historyTrackState.deleteItem(item.id);
   };
 
   const dropdownOptions: DropdownOption[] = [
@@ -155,6 +154,7 @@ const TrackItem: FC<TrackItemProps> = ({
               { "info__copy-state--idle": copyState === CopyStates.IDLE },
               { "info__copy-state--copied": copyState === CopyStates.COPIED },
               { "info__copy-state--away": copyState === CopyStates.AWAY },
+              { "info__copy-state--text-only": itemWidth >= 150 },
             )}>
             {itemWidth < 150 ? <CheckIcon /> : "Скопировано"}
           </span>
@@ -178,4 +178,4 @@ const TrackItem: FC<TrackItemProps> = ({
   );
 };
 
-export default TrackItem;
+export default observer(TrackItem);
